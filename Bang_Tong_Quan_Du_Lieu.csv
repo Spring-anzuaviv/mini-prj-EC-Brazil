@@ -1,0 +1,10 @@
+﻿Bảng,Số dòng,Số cột,Khóa dự kiến,Khóa duy nhất?,Phạm vi thời gian
+olist_customers_dataset,99441,5,customer_id,Có,Không có dữ liệu thời gian
+olist_geolocation_dataset,1000163,5,geolocation_zip_code_prefix,Không,Không có dữ liệu thời gian
+olist_order_items_dataset,112650,7,order_id + order_item_id,Có,2016-09-19 00:15:34 -> 2020-04-09 22:35:08 (shipping_limit_date)
+olist_order_payments_dataset,103886,5,order_id + payment_sequential,Có,Không có dữ liệu thời gian
+olist_order_reviews_dataset,99224,7,review_id,Không,"2016-10-02 00:00:00 -> 2018-10-29 12:27:35 (review_creation_date, review_answer_timestamp)"
+olist_orders_dataset,99441,8,order_id,Có,"2016-09-04 21:15:19 -> 2018-11-12 00:00:00 (order_purchase_timestamp, order_approved_at, order_delivered_carrier_date, order_delivered_customer_date, order_estimated_delivery_date)"
+olist_products_dataset,32951,9,product_id,Có,Không có dữ liệu thời gian
+olist_sellers_dataset,3095,4,seller_id,Có,Không có dữ liệu thời gian
+product_category_name_translation,71,2,product_category_name,Có,Không có dữ liệu thời gian

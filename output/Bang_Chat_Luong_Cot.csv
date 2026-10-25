@@ -10,14 +10,14 @@ olist_geolocation_dataset,geolocation_lng,float64,0.0,717613,Min = -101.47; Max 
 olist_geolocation_dataset,geolocation_city,string,0.0,8011,VD: sao paulo (13.6%); rio de janeiro (6.2%); belo horizonte (2.8%),"2,045 giá trị chỉ khác hoa/thường, dấu hoặc khoảng trắng"
 olist_geolocation_dataset,geolocation_state,string,0.0,27,VD: SP (40.4%); MG (12.6%); RJ (12.1%),
 olist_order_items_dataset,order_id,string,0.0,98666,VD: 00010242fe8c5a6d1ba2dd792cb16214; 00018f77f2f0320c557190d7a144bdd3; 000229ec398224ef6ca0657da4fc703e,"Không duy nhất: 13,984 dòng trùng giá trị (TB 1.14 dòng/giá trị)"
-olist_order_items_dataset,order_item_id,string,0.0,21,VD: 1; 2; 3,Chỉ duy nhất khi ghép với order_id; Số thứ tự lớn nhất 21; 87.6% dòng có giá trị 1
+olist_order_items_dataset,order_item_id,int64,0.0,21,Min = 1; Max = 21; Mode = 1 (87.6%); TB = 1.20,Chỉ duy nhất khi ghép với order_id
 olist_order_items_dataset,product_id,string,0.0,32951,VD: 4244733e06e7ecb4970a6e2683c13e61; e5f2d52b802189ee658865ca93d83a8f; c777355d18b72b67abbeef9df44fd0fd,"Không duy nhất: 79,699 dòng trùng giá trị (TB 3.42 dòng/giá trị)"
 olist_order_items_dataset,seller_id,string,0.0,3095,VD: 48436dade18ac8b2bce089ec2a041202; dd7ddc04e1b6c2c614352b383efe2d36; 5b51032eddd242adc84c38acab88f23d,"Không duy nhất: 109,555 dòng trùng giá trị (TB 36.40 dòng/giá trị)"
 olist_order_items_dataset,shipping_limit_date,datetime (đọc dạng chuỗi),0.0,93318,Min = 2016-09-19 00:15:34; Max = 2020-04-09 22:35:08,"Đọc dạng chuỗi, cần ép kiểu datetime khi nạp"
 olist_order_items_dataset,price,float64,0.0,5968,"Min = 0.85; Max = 6,735; Mode = 59.90 (2.2%); TB = 120.65","8,427 ngoại lai IQR (7.48%), ngưỡng trên 277.40"
 olist_order_items_dataset,freight_value,float64,0.0,6999,Min = 0; Max = 409.68; Mode = 15.10 (3.3%); TB = 19.99,"383 giá trị bằng 0; 12,134 ngoại lai IQR (10.77%), ngưỡng trên 33.25"
 olist_order_payments_dataset,order_id,string,0.0,99440,VD: b81ef226f3fe1789b1e8b2acac839d17; a9810da82917af2d9aefd1278f1dcfa0; 25e8ea4e93396b6fa0d3dd708e76c1bd,"Không duy nhất: 4,446 dòng trùng giá trị (TB 1.04 dòng/giá trị)"
-olist_order_payments_dataset,payment_sequential,int64,0.0,29,Min = 1; Max = 29; Mode = 1 (95.6%); TB = 1.09,Chỉ duy nhất khi ghép với order_id; Số thứ tự lớn nhất 29; 95.6% dòng có giá trị 1
+olist_order_payments_dataset,payment_sequential,int64,0.0,29,Min = 1; Max = 29; Mode = 1 (95.6%); TB = 1.09,Chỉ duy nhất khi ghép với order_id
 olist_order_payments_dataset,payment_type,string,0.0,5,VD: credit_card (73.9%); boleto (19.0%); voucher (5.6%),
 olist_order_payments_dataset,payment_installments,int64,0.0,24,Min = 0; Max = 24; Mode = 1 (50.6%); TB = 2.85,"2 giá trị bằng 0; 6,313 ngoại lai IQR (6.08%), ngưỡng trên 8.50"
 olist_order_payments_dataset,payment_value,float64,0.0,29077,"Min = 0; Max = 13,664.08; Mode = 50 (0.3%); TB = 154.10","9 giá trị bằng 0; 7,981 ngoại lai IQR (7.68%), ngưỡng trên 344.41"

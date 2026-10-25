@@ -1,0 +1,53 @@
+﻿Bảng,Cột,Vai trò,Kiểu dữ liệu,% Null,Số giá trị phân biệt,Min,Max,Mode,Trung bình,Trung vị,Độ lệch chuẩn,Giá trị mẫu,Nhận xét,Quan trọng
+olist_customers_dataset,customer_id,Khóa,string,0.0,99441,,,,,,,06b8999e2fba1a1fbc88172c00ba8bc7; 18955e83d337fd6b2def6b18a428ac77; 4e7b3e00288586ebd08712fdd0374a03,"Duy nhất, không NULL",Có
+olist_customers_dataset,customer_unique_id,Khóa,string,0.0,96096,,,,,,,861eff4711a542e4b93843c6dd7febb0; 290c77bc529b7ac935b93aa66c333dc3; 060e732b5b29e8181a18229c7b0b2b5e,"Không duy nhất: 3,345 dòng trùng giá trị (TB 1.03 dòng/giá trị)",Có
+olist_customers_dataset,customer_zip_code_prefix,Phân loại,string,0.0,14994,,,,,,,14409; 09790; 01151,"23,995 mã bắt đầu bằng 0, phải lưu dạng chuỗi",Có
+olist_customers_dataset,customer_city,Phân loại,string,0.0,4119,,,,,,,sao paulo (15.6%); rio de janeiro (6.9%); belo horizonte (2.8%),,Có
+olist_customers_dataset,customer_state,Phân loại,string,0.0,27,,,,,,,SP (42.0%); RJ (12.9%); MG (11.7%),,Có
+olist_geolocation_dataset,geolocation_zip_code_prefix,Khóa,string,0.0,19015,,,,,,,01037; 01046; 01041,"Không duy nhất: 981,148 dòng trùng giá trị (TB 52.60 dòng/giá trị); 245,733 mã bắt đầu bằng 0, phải lưu dạng chuỗi",Có
+olist_geolocation_dataset,geolocation_lat,Số (measure),float64,0.0,717360,-36.61,45.07,-27.10 (0.0%),-21.18,-22.92,5.72,,31 tọa độ nằm ngoài lãnh thổ Brazil,Có
+olist_geolocation_dataset,geolocation_lng,Số (measure),float64,0.0,717613,-101.47,121.11,-48.63 (0.0%),-46.39,-46.64,4.27,,37 tọa độ nằm ngoài lãnh thổ Brazil,Có
+olist_geolocation_dataset,geolocation_city,Phân loại,string,0.0,8011,,,,,,,sao paulo (13.6%); rio de janeiro (6.2%); belo horizonte (2.8%),"2,045 giá trị chỉ khác hoa/thường, dấu hoặc khoảng trắng",Có
+olist_geolocation_dataset,geolocation_state,Phân loại,string,0.0,27,,,,,,,SP (40.4%); MG (12.6%); RJ (12.1%),,Có
+olist_order_items_dataset,order_id,Khóa,string,0.0,98666,,,,,,,00010242fe8c5a6d1ba2dd792cb16214; 00018f77f2f0320c557190d7a144bdd3; 000229ec398224ef6ca0657da4fc703e,"Không duy nhất: 13,984 dòng trùng giá trị (TB 1.14 dòng/giá trị)",Có
+olist_order_items_dataset,order_item_id,Số thứ tự (khóa ghép),int64,0.0,21,1,21,1 (87.6%),1.20,1,0.71,,Chỉ duy nhất khi ghép với order_id,Có
+olist_order_items_dataset,product_id,Khóa,string,0.0,32951,,,,,,,4244733e06e7ecb4970a6e2683c13e61; e5f2d52b802189ee658865ca93d83a8f; c777355d18b72b67abbeef9df44fd0fd,"Không duy nhất: 79,699 dòng trùng giá trị (TB 3.42 dòng/giá trị)",Có
+olist_order_items_dataset,seller_id,Khóa,string,0.0,3095,,,,,,,48436dade18ac8b2bce089ec2a041202; dd7ddc04e1b6c2c614352b383efe2d36; 5b51032eddd242adc84c38acab88f23d,"Không duy nhất: 109,555 dòng trùng giá trị (TB 36.40 dòng/giá trị)",Có
+olist_order_items_dataset,shipping_limit_date,Thời gian,datetime (đọc dạng chuỗi),0.0,93318,2016-09-19 00:15:34,2020-04-09 22:35:08,,,,,,"Đọc dạng chuỗi, cần ép kiểu datetime khi nạp",Có
+olist_order_items_dataset,price,Số (measure),float64,0.0,5968,0.85,"6,735",59.90 (2.2%),120.65,74.99,183.63,,"8,427 ngoại lai IQR (7.48%), ngưỡng trên 277.40",Có
+olist_order_items_dataset,freight_value,Số (measure),float64,0.0,6999,0,409.68,15.10 (3.3%),19.99,16.26,15.81,,"383 giá trị bằng 0; 12,134 ngoại lai IQR (10.77%), ngưỡng trên 33.25",Có
+olist_order_payments_dataset,order_id,Khóa,string,0.0,99440,,,,,,,b81ef226f3fe1789b1e8b2acac839d17; a9810da82917af2d9aefd1278f1dcfa0; 25e8ea4e93396b6fa0d3dd708e76c1bd,"Không duy nhất: 4,446 dòng trùng giá trị (TB 1.04 dòng/giá trị)",Có
+olist_order_payments_dataset,payment_sequential,Số thứ tự (khóa ghép),int64,0.0,29,1,29,1 (95.6%),1.09,1,0.71,,Chỉ duy nhất khi ghép với order_id,Có
+olist_order_payments_dataset,payment_type,Phân loại,string,0.0,5,,,,,,,credit_card (73.9%); boleto (19.0%); voucher (5.6%),,Có
+olist_order_payments_dataset,payment_installments,Số (measure),int64,0.0,24,0,24,1 (50.6%),2.85,1,2.69,,"2 giá trị bằng 0; 6,313 ngoại lai IQR (6.08%), ngưỡng trên 8.50",Có
+olist_order_payments_dataset,payment_value,Số (measure),float64,0.0,29077,0,"13,664.08",50 (0.3%),154.10,100,217.49,,"9 giá trị bằng 0; 7,981 ngoại lai IQR (7.68%), ngưỡng trên 344.41",Có
+olist_order_reviews_dataset,review_id,Khóa,string,0.0,98410,,,,,,,7bc2406110b926393aa56f80a40eba40; 80e641a11e56f04c1ad469d5645fdfde; 228ce5500dc1d8e020d8d1322874b6f0,Không duy nhất: 814 dòng trùng giá trị (TB 1.01 dòng/giá trị),Có
+olist_order_reviews_dataset,order_id,Khóa,string,0.0,98673,,,,,,,73fc7af87114b39712e6da79b0a377eb; a548910a1c6147796b98fdf73dbeba33; f9e4b658b201a9f2ecdecbb34bed034b,Không duy nhất: 551 dòng trùng giá trị (TB 1.01 dòng/giá trị),Có
+olist_order_reviews_dataset,review_score,Số (measure),int64,0.0,5,1,5,5 (57.8%),4.09,5,1.35,,"Phân bố: 1=11.5%, 2=3.2%, 3=8.2%, 4=19.3%, 5=57.8%",Có
+olist_order_reviews_dataset,review_comment_title,Phân loại,string,88.34,4527,,,,,,,Recomendo (3.7%); recomendo (3.0%); Bom (2.5%),"Thiếu 87,656 dòng; 955 giá trị chỉ khác hoa/thường, dấu hoặc khoảng trắng",Có
+olist_order_reviews_dataset,review_comment_message,Phân loại,string,58.7,36159,,,,,,,Muito bom (0.6%); Bom (0.5%); muito bom (0.3%),"Thiếu 58,247 dòng; 1,297 giá trị chỉ khác hoa/thường, dấu hoặc khoảng trắng",Có
+olist_order_reviews_dataset,review_creation_date,Thời gian,datetime (đọc dạng chuỗi),0.0,636,2016-10-02 00:00:00,2018-08-31 00:00:00,,,,,,"Đọc dạng chuỗi, cần ép kiểu datetime khi nạp",Có
+olist_order_reviews_dataset,review_answer_timestamp,Thời gian,datetime (đọc dạng chuỗi),0.0,98248,2016-10-07 18:32:28,2018-10-29 12:27:35,,,,,,"Đọc dạng chuỗi, cần ép kiểu datetime khi nạp",Có
+olist_orders_dataset,order_id,Khóa,string,0.0,99441,,,,,,,e481f51cbdc54678b7cc49136f2d6af7; 53cdb2fc8bc7dce0b6741e2150273451; 47770eb9100c2d0c44946d9cf07ec65d,"Duy nhất, không NULL",Có
+olist_orders_dataset,customer_id,Khóa,string,0.0,99441,,,,,,,9ef432eb6251297304e76186b10a928d; b0830fb4747a6c6d20dea0b8c802d7ef; 41ce2a54c0b03bf3443c3d931a367089,"Duy nhất, không NULL",Có
+olist_orders_dataset,order_status,Phân loại,string,0.0,8,,,,,,,delivered (97.0%); shipped (1.1%); canceled (0.6%),,Có
+olist_orders_dataset,order_purchase_timestamp,Thời gian,datetime (đọc dạng chuỗi),0.0,98875,2016-09-04 21:15:19,2018-10-17 17:30:18,,,,,,"Đọc dạng chuỗi, cần ép kiểu datetime khi nạp",Có
+olist_orders_dataset,order_approved_at,Thời gian,datetime (đọc dạng chuỗi),0.16,90733,2016-09-15 12:16:38,2018-09-03 17:40:06,,,,,,"Thiếu 160 dòng; Đọc dạng chuỗi, cần ép kiểu datetime khi nạp",Có
+olist_orders_dataset,order_delivered_carrier_date,Thời gian,datetime (đọc dạng chuỗi),1.79,81018,2016-10-08 10:34:01,2018-09-11 19:48:28,,,,,,"Thiếu 1,783 dòng; Đọc dạng chuỗi, cần ép kiểu datetime khi nạp",Có
+olist_orders_dataset,order_delivered_customer_date,Thời gian,datetime (đọc dạng chuỗi),2.98,95664,2016-10-11 13:46:32,2018-10-17 13:22:46,,,,,,"Thiếu 2,965 dòng; Đọc dạng chuỗi, cần ép kiểu datetime khi nạp",Có
+olist_orders_dataset,order_estimated_delivery_date,Thời gian,datetime (đọc dạng chuỗi),0.0,459,2016-09-30 00:00:00,2018-11-12 00:00:00,,,,,,"Đọc dạng chuỗi, cần ép kiểu datetime khi nạp",Có
+olist_products_dataset,product_id,Khóa,string,0.0,32951,,,,,,,1e9e8ef04dbcff4541ed26657ea517e5; 3aa071139cb16b67ca9e5dea641aaa2f; 96bd76ec8810374ed1b65e291975717f,"Duy nhất, không NULL",Có
+olist_products_dataset,product_category_name,Phân loại,string,1.85,73,,,,,,,cama_mesa_banho (9.4%); esporte_lazer (8.9%); moveis_decoracao (8.2%),Thiếu 610 dòng,Có
+olist_products_dataset,product_name_lenght,Số (measure),float64,1.85,66,5,76,60 (6.7%),48.48,51,10.25,,"Thiếu 610 dòng; 290 ngoại lai IQR (0.90%), ngưỡng trên 79.50",Có
+olist_products_dataset,product_description_lenght,Số (measure),float64,1.85,2960,4,"3,992",404 (0.3%),771.50,595,635.12,,"Thiếu 610 dòng; 2,078 ngoại lai IQR (6.43%), ngưỡng trên 1,921.50",Có
+olist_products_dataset,product_photos_qty,Số (measure),float64,1.85,19,1,20,1 (51.0%),2.19,1,1.74,,"Thiếu 610 dòng; 849 ngoại lai IQR (2.63%), ngưỡng trên 6",Có
+olist_products_dataset,product_weight_g,Số (measure),float64,0.01,2204,0,"40,425",200 (6.3%),"2,276.47",700,"4,282.04",,"Thiếu 2 dòng; 4 giá trị bằng 0; 4,551 ngoại lai IQR (13.81%), ngưỡng trên 4,300",Có
+olist_products_dataset,product_length_cm,Số (measure),float64,0.01,99,7,105,16 (16.8%),30.82,25,16.91,,"Thiếu 2 dòng; 1,380 ngoại lai IQR (4.19%), ngưỡng trên 68",Có
+olist_products_dataset,product_height_cm,Số (measure),float64,0.01,102,2,105,10 (7.7%),16.94,13,13.64,,"Thiếu 2 dòng; 1,892 ngoại lai IQR (5.74%), ngưỡng trên 40.50",Có
+olist_products_dataset,product_width_cm,Số (measure),float64,0.01,95,6,118,11 (11.3%),23.20,20,12.08,,"Thiếu 2 dòng; 912 ngoại lai IQR (2.77%), ngưỡng trên 52.50",Có
+olist_sellers_dataset,seller_id,Khóa,string,0.0,3095,,,,,,,3442f8959a84dea7ee197c632cb2df15; d1b65fc7debc3361ea86b5f14c68d2e2; ce3ad9de960102d0677a81f5d0bb7b2d,"Duy nhất, không NULL",Có
+olist_sellers_dataset,seller_zip_code_prefix,Phân loại,string,0.0,2246,,,,,,,13023; 13844; 20031,"1,027 mã bắt đầu bằng 0, phải lưu dạng chuỗi",Có
+olist_sellers_dataset,seller_city,Phân loại,string,0.0,611,,,,,,,sao paulo (22.4%); curitiba (4.1%); rio de janeiro (3.1%),"5 giá trị chỉ khác hoa/thường, dấu hoặc khoảng trắng",Có
+olist_sellers_dataset,seller_state,Phân loại,string,0.0,23,,,,,,,SP (59.7%); PR (11.3%); MG (7.9%),,Có
+product_category_name_translation,product_category_name,Khóa,string,0.0,71,,,,,,,beleza_saude; informatica_acessorios; automotivo,"Duy nhất, không NULL",Có
+product_category_name_translation,product_category_name_english,Phân loại,string,0.0,71,,,,,,,health_beauty (1.4%); computers_accessories (1.4%); auto (1.4%),,Có

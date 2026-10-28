@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="IncrementalLoadOrders"
   DTS:PackageType="5"
-  DTS:VersionBuild="37"
-  DTS:VersionGUID="{38E63D9C-7499-4AD7-8A6B-ADA8B5304C2A}">
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{D064F564-E1C9-49BA-9795-CE521B97FC7B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -21,6 +21,8 @@
       DTS:CreationName="FLATFILE"
       DTS:DTSID="{9F3C5133-C4F0-417A-B1B1-6316C29B5744}"
       DTS:ObjectName="FF_Orders">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::RawDataFolder] + "\\olist_orders_dataset.csv"</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Format="Delimited"
@@ -168,6 +170,30 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\Clear Orders In Range"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E192A870-0D19-4525-861A-572574AA17E4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Orders In Range"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2D1F6F39-9706-43ED-BFF8-04B0E5E2DF0E}"
+          SQLTask:SqlStatementSource="DECLARE @BatchID INT = ?;&#xA;DECLARE @LSET DATETIME;&#xA;DECLARE @CET DATETIME;&#xA;&#xA;SELECT&#xA;    @LSET = LSET,&#xA;    @CET = CET&#xA;FROM Olist_Metadata.dbo.etl_batch&#xA;WHERE batch_id = @BatchID&#xA;  AND flow_name = 'orders';&#xA;&#xA;IF @LSET IS NULL OR @CET IS NULL OR @LSET &gt;= @CET&#xA;BEGIN&#xA;    THROW 50001, N'Batch orders khong co khoang thoi gian hop le.', 1;&#xA;END;&#xA;&#xA;DELETE FROM dbo.stg_orders&#xA;WHERE CONVERT(DATETIME, order_purchase_timestamp, 120) &gt;= @LSET&#xA;  AND CONVERT(DATETIME, order_purchase_timestamp, 120) &lt; @CET;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Create Batch"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
@@ -181,7 +207,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{5FF054F3-5477-4C3F-BD97-85810DBC8733}"
-          SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;&#xA;INSERT INTO dbo.etl_batch (flow_name, LSET, CET)&#xA;OUTPUT INSERTED.batch_id AS batch_id&#xA;SELECT name, LSET, CET&#xA;FROM dbo.data_flow&#xA;WHERE name = 'orders';"
+          SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;&#xA;INSERT INTO dbo.etl_batch&#xA;(&#xA;    flow_name,&#xA;    LSET,&#xA;    CET,&#xA;    [status]&#xA;)&#xA;OUTPUT INSERTED.batch_id AS batch_id&#xA;SELECT&#xA;    name,&#xA;    LSET,&#xA;    CET,&#xA;    'Running'&#xA;FROM dbo.data_flow&#xA;WHERE name = 'orders';&#xA;&#xA;IF @@ROWCOUNT &lt;&gt; 1&#xA;BEGIN&#xA;    THROW 50001,&#xA;          N'Khong tim thay duy nhat mot flow orders.',&#xA;          1;&#xA;END;"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
             SQLTask:ResultName="0"
@@ -1373,7 +1399,14 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{5FF054F3-5477-4C3F-BD97-85810DBC8733}"
-          SQLTask:SqlStatementSource="UPDATE dbo.data_flow&#xA;SET LSET = CET&#xA;WHERE name = 'orders';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;SET XACT_ABORT ON;&#xA;&#xA;DECLARE @BatchID INT = ?;&#xA;&#xA;BEGIN TRY&#xA;    BEGIN TRANSACTION;&#xA;&#xA;    UPDATE f&#xA;    SET f.LSET = b.CET&#xA;    FROM dbo.data_flow AS f&#xA;    INNER JOIN dbo.etl_batch AS b&#xA;        ON b.flow_name = f.name&#xA;    WHERE b.batch_id = @BatchID&#xA;      AND b.[status] = 'Running'&#xA;      AND f.LSET = b.LSET&#xA;      AND f.CET = b.CET;&#xA;&#xA;    IF @@ROWCOUNT &lt;&gt; 1&#xA;    BEGIN&#xA;        THROW 50002,&#xA;              N'Khong the cap nhat watermark: batch hoac moc khong hop le.',&#xA;              1;&#xA;    END;&#xA;&#xA;    UPDATE dbo.etl_batch&#xA;    SET [status] = 'Success',&#xA;        ended_at = SYSDATETIME(),&#xA;        error_message = NULL&#xA;    WHERE batch_id = @BatchID&#xA;      AND [status] = 'Running';&#xA;&#xA;    IF @@ROWCOUNT &lt;&gt; 1&#xA;    BEGIN&#xA;        THROW 50003,&#xA;              N'Khong the cap nhat trang thai batch.',&#xA;              1;&#xA;    END;&#xA;&#xA;    COMMIT TRANSACTION;&#xA;END TRY&#xA;BEGIN CATCH&#xA;    IF XACT_STATE() &lt;&gt; 0&#xA;        ROLLBACK TRANSACTION;&#xA;&#xA;    THROW;&#xA;END CATCH;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -1405,12 +1438,73 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
-      DTS:DTSID="{01DF9E44-880B-4AE1-915A-E4F636004554}"
+      DTS:DTSID="{143E7A39-BA59-42D0-8E50-A995C4C52535}"
       DTS:From="Package\Create Batch"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Clear Orders In Range" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{7A44B7BC-7673-4BD9-9B84-9DDF0764428A}"
+      DTS:From="Package\Clear Orders In Range"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
       DTS:To="Package\Extract Orders" />
   </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{46D06A8A-6492-4F9B-80FE-6114BB4998D6}"
+      DTS:EventID="563713096"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{D49A5779-00F9-4450-AF21-8D8EC3607615}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Log Batch Failure"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{CA257306-D725-4E68-B3C4-E5DADB5303DD}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Log Batch Failure"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5FF054F3-5477-4C3F-BD97-85810DBC8733}"
+              SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;&#xA;DECLARE @BatchID INT = ?;&#xA;DECLARE @ErrorMessage NVARCHAR(MAX) = ?;&#xA;&#xA;UPDATE dbo.etl_batch&#xA;SET [status] = 'Failed',&#xA;    ended_at = SYSDATETIME(),&#xA;    error_message = @ErrorMessage&#xA;WHERE batch_id = @BatchID&#xA;  AND [status] = 'Running';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -1424,13 +1518,17 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Clear Orders In Range"
+          TopLeft="235.833320447969,220.133331802554" />
+        <NodeLayout
           Size="139.2,41.6"
           Id="Package\Create Batch"
           TopLeft="242.592579337918,149.451850812582" />
         <NodeLayout
           Size="145.6,41.6"
           Id="Package\Extract Orders"
-          TopLeft="241.574060875049,235.25185021594" />
+          TopLeft="244.074060738455,310.651849691618" />
         <NodeLayout
           Size="164.8,41.6"
           Id="Package\Get LSET"
@@ -1442,7 +1540,7 @@
         <NodeLayout
           Size="122.4,41.6"
           Id="Package\Set LSET"
-          TopLeft="254.259245367146,340.31110874463" />
+          TopLeft="255.092578654948,391.444441722389" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="313.74813486312,41.6">
@@ -1489,18 +1587,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="314.916653121098,276.85185021594">
+          TopLeft="316.583319696702,352.251849691618">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,63.4592585286901"
+              EndConnector="0,39.1925920307708"
               Start="0,0"
-              End="0,55.9592585286901">
+              End="0,31.6925920307708">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,55.9592585286901" />
+                    End="0,31.6925920307708" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1511,18 +1609,40 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="313.283320106484,191.051850812582">
+          TopLeft="315.212949892943,191.051850812582">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,44.199999403358"
+              EndConnector="0,29.0814809899717"
               Start="0,0"
-              End="0,36.699999403358">
+              End="0,21.5814809899717">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.699999403358" />
+                    End="0,21.5814809899717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="317.553690593212,261.733331802554">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.9185178890641"
+              Start="0,0"
+              End="0,41.4185178890641">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.4185178890641" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1534,19 +1654,71 @@
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package.EventHandlers[OnError]\Log Batch Failure"
+          TopLeft="141.999997884035,92.999998614192" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
   <TaskHost
     design-time-name="Package\Extract Orders">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="151.2,41.6"
-          Id="Package\Extract Orders\Flat File Source"
-          TopLeft="169.999997466803,31.9999995231629" />
+          Size="171.2,41.6"
+          Id="Package\Extract Orders\OLE DB Destination"
+          TopLeft="184.999997243285,450.199993756414" />
         <NodeLayout
           Size="156,41.6"
           Id="Package\Extract Orders\Data Conversion"
           TopLeft="169.999997466803,132.999998018146" />
+        <NodeLayout
+          Size="161.6,41.6"
+          Id="Package\Extract Orders\Derived Column 1"
+          TopLeft="172.999997422099,371.999994456768" />
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Extract Orders\Flat File Source"
+          TopLeft="169.999997466803,31.9999995231629" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Extract Orders\Conditional Split"
+          TopLeft="175.999997377396,285.999995738268" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Extract Orders\Derived Column"
+          TopLeft="170.999997451901,206.99999691546" />
+        <EdgeLayout
+          Id="Package\Extract Orders.Paths[Orders_in_range]"
+          TopLeft="253.299997399747,327.599995738268">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.3999987185001"
+              Start="0,0"
+              End="0,36.8999987185001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.8999987185001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-37.4788671875,12.6184563905001,74.957734375,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Orders.Paths[Flat File Source Output]"
           TopLeft="246.799997466803,73.5999995231629">
@@ -1569,90 +1741,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="152.8,41.6"
-          Id="Package\Extract Orders\Derived Column"
-          TopLeft="170.999997451901,206.99999691546" />
-        <EdgeLayout
-          Id="Package\Extract Orders.Paths[Data Conversion Output]"
-          TopLeft="247.699997459352,174.599998018146">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,32.3999988973142"
-              Start="0,0"
-              End="0,24.8999988973142">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.8999988973142" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="153.6,41.6"
-          Id="Package\Extract Orders\Conditional Split"
-          TopLeft="175.999997377396,285.999995738268" />
-        <EdgeLayout
-          Id="Package\Extract Orders.Paths[Derived Column Output]"
-          TopLeft="250.099997414649,248.59999691546">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,37.3999988228083"
-              Start="0,0"
-              End="0,29.8999988228083">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,29.8999988228083" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="161.6,41.6"
-          Id="Package\Extract Orders\Derived Column 1"
-          TopLeft="172.999997422099,371.999994456768" />
-        <EdgeLayout
-          Id="Package\Extract Orders.Paths[Orders_in_range]"
-          TopLeft="253.299997399747,327.599995738268">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,44.3999987185001"
-              Start="0,0"
-              End="0,36.8999987185001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,36.8999987185001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-37.4788671875,12.6184563905,74.957734375,11.6630859375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\Extract Orders\OLE DB Destination"
-          TopLeft="184.999997243285,450.199993756414" />
         <EdgeLayout
           Id="Package\Extract Orders.Paths[Derived Column Output1]"
           TopLeft="253.799997422099,413.599994456768">
@@ -1679,6 +1767,50 @@
                     Point3="16.7999998211861,22.2999996498228" />
                   <mssgle:LineSegment
                     End="16.7999998211861,29.0999992996455" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Orders.Paths[Derived Column Output]"
+          TopLeft="250.099997414649,248.59999691546">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.3999988228083"
+              Start="0,0"
+              End="0,29.8999988228083">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.8999988228083" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Orders.Paths[Data Conversion Output]"
+          TopLeft="247.699997459352,174.599998018146">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.3999988973142"
+              Start="0,0"
+              End="0,24.8999988973142">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.8999988973142" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

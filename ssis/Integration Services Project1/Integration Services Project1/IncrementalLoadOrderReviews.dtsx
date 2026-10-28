@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{A8FE7BF0-0471-450B-B517-B052DE4A743D}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{42F8A17A-3426-4021-8A19-33789229ED02}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -161,6 +161,30 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\Clear Reviews In Range"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{820D0818-6771-4204-A74B-3182B8D457C6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Reviews In Range"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FF8B65AB-8822-4792-A87A-A3D95ED73481}"
+          SQLTask:SqlStatementSource="DECLARE @BatchID INT = ?;&#xA;DECLARE @LSET DATETIME;&#xA;DECLARE @CET DATETIME;&#xA;&#xA;SELECT&#xA;    @LSET = LSET,&#xA;    @CET = CET&#xA;FROM Olist_Metadata.dbo.etl_batch&#xA;WHERE batch_id = @BatchID&#xA;  AND flow_name = 'order_reviews';&#xA;&#xA;IF @LSET IS NULL OR @CET IS NULL OR @LSET &gt;= @CET&#xA;BEGIN&#xA;    THROW 50001, N'Batch order_reviews khong hop le.', 1;&#xA;END;&#xA;&#xA;DELETE r&#xA;FROM dbo.stg_order_reviews AS r&#xA;WHERE EXISTS&#xA;(&#xA;    SELECT 1&#xA;    FROM dbo.stg_orders AS o&#xA;    WHERE o.order_id = r.order_id&#xA;      AND CONVERT(DATETIME, o.order_purchase_timestamp, 120) &gt;= @LSET&#xA;      AND CONVERT(DATETIME, o.order_purchase_timestamp, 120) &lt; @CET&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Create Batch"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
@@ -174,7 +198,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{82FECD68-314C-429E-91E2-97671269C588}"
-          SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;&#xA;INSERT INTO dbo.etl_batch (flow_name, LSET, CET)&#xA;OUTPUT INSERTED.batch_id AS batch_id&#xA;SELECT name, LSET, CET&#xA;FROM dbo.data_flow&#xA;WHERE name = 'order_reviews';"
+          SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;&#xA;INSERT INTO dbo.etl_batch&#xA;(&#xA;    flow_name,&#xA;    LSET,&#xA;    CET,&#xA;    [status]&#xA;)&#xA;OUTPUT INSERTED.batch_id AS batch_id&#xA;SELECT&#xA;    name,&#xA;    LSET,&#xA;    CET,&#xA;    'Running'&#xA;FROM dbo.data_flow&#xA;WHERE name = 'order_reviews';&#xA;&#xA;IF @@ROWCOUNT &lt;&gt; 1&#xA;BEGIN&#xA;    THROW 50001,&#xA;          N'Khong tim thay duy nhat mot flow orders.',&#xA;          1;&#xA;END;"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
             SQLTask:ResultName="0"
@@ -1380,7 +1404,14 @@ where [refTable].[order_id] = ?</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{82FECD68-314C-429E-91E2-97671269C588}"
-          SQLTask:SqlStatementSource="UPDATE dbo.data_flow&#xA;SET LSET = CET&#xA;WHERE name = 'order_reviews';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;SET XACT_ABORT ON;&#xA;&#xA;DECLARE @BatchID INT = ?;&#xA;&#xA;BEGIN TRY&#xA;    BEGIN TRANSACTION;&#xA;&#xA;    UPDATE f&#xA;    SET f.LSET = b.CET&#xA;    FROM dbo.data_flow AS f&#xA;    INNER JOIN dbo.etl_batch AS b&#xA;        ON b.flow_name = f.name&#xA;    WHERE b.batch_id = @BatchID&#xA;      AND b.[status] = 'Running'&#xA;      AND f.LSET = b.LSET&#xA;      AND f.CET = b.CET;&#xA;&#xA;    IF @@ROWCOUNT &lt;&gt; 1&#xA;    BEGIN&#xA;        THROW 50002,&#xA;              N'Khong the cap nhat watermark: batch hoac moc khong hop le.',&#xA;              1;&#xA;    END;&#xA;&#xA;    UPDATE dbo.etl_batch&#xA;    SET [status] = 'Success',&#xA;        ended_at = SYSDATETIME(),&#xA;        error_message = NULL&#xA;    WHERE batch_id = @BatchID&#xA;      AND [status] = 'Running';&#xA;&#xA;    IF @@ROWCOUNT &lt;&gt; 1&#xA;    BEGIN&#xA;        THROW 50003,&#xA;              N'Khong the cap nhat trang thai batch.',&#xA;              1;&#xA;    END;&#xA;&#xA;    COMMIT TRANSACTION;&#xA;END TRY&#xA;BEGIN CATCH&#xA;    IF XACT_STATE() &lt;&gt; 0&#xA;        ROLLBACK TRANSACTION;&#xA;&#xA;    THROW;&#xA;END CATCH;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -1404,11 +1435,11 @@ where [refTable].[order_id] = ?</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{A97388F6-879C-4E37-8547-ED6E44DA5C53}"
+      DTS:DTSID="{83DB772B-6F83-46AB-8009-124A31DB83BB}"
       DTS:From="Package\Create Batch"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Extract Order Reviews" />
+      DTS:To="Package\Clear Reviews In Range" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
@@ -1417,7 +1448,68 @@ where [refTable].[order_id] = ?</property>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 3"
       DTS:To="Package\Set LSET" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{AF2C7BB4-35BD-4F21-A281-484EB48907A3}"
+      DTS:From="Package\Clear Reviews In Range"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Extract Order Reviews" />
   </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{C29F886B-3313-406F-8C28-9CE5AAC8C057}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{9FC47C02-CE90-47C7-813F-1769BBD84C34}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Log Batch Failure"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{59EEACAC-8EF1-4CF3-A40A-86B8B37527AD}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Log Batch Failure"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{82FECD68-314C-429E-91E2-97671269C588}"
+              SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;&#xA;DECLARE @BatchID INT = ?;&#xA;DECLARE @ErrorMessage NVARCHAR(MAX) = ?;&#xA;&#xA;UPDATE dbo.etl_batch&#xA;SET [status] = 'Failed',&#xA;    ended_at = SYSDATETIME(),&#xA;    error_message = @ErrorMessage&#xA;WHERE batch_id = @BatchID&#xA;  AND [status] = 'Running';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -1431,39 +1523,43 @@ where [refTable].[order_id] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Clear Reviews In Range"
+          TopLeft="75.8333291899829,217.733332019515" />
+        <NodeLayout
           Size="139.2,41.6"
           Id="Package\Create Batch"
-          TopLeft="69.1666628875668,204.533331911034" />
+          TopLeft="73.3333293265768,150.799998951356" />
         <NodeLayout
           Size="182.4,41.6"
           Id="Package\Extract Order Reviews"
-          TopLeft="72.4999960387749,272.999998101592" />
+          TopLeft="75.8333291899829,290.333331314392" />
         <NodeLayout
           Size="124,41.6"
           Id="Package\Get LSET"
-          TopLeft="79.1666623411909,134.333332399196" />
+          TopLeft="75.8333291899829,71.9333328331178" />
         <NodeLayout
           Size="117.6,41.6"
           Id="Package\Set CET"
-          TopLeft="85.8333286436069,57.1999996022383" />
+          TopLeft="80.8333289167948,4.33333330319984" />
         <NodeLayout
           Size="164.8,41.6"
           Id="Package\Set LSET"
-          TopLeft="82.4999954923989,350.13333089855" />
+          TopLeft="88.333328507013,385.666663984789" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="141.299995492399,98.7999996022384">
+          TopLeft="138.733329053389,45.9333333031998">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,35.5333327969577"
+              EndConnector="0,25.9999995299179"
               Start="0,0"
-              End="0,28.0333327969577">
+              End="0,18.4999995299179">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.0333327969577" />
+                    End="0,18.4999995299179" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1474,18 +1570,18 @@ where [refTable].[order_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="139.966662614379,175.933332399196">
+          TopLeft="140.38332925828,113.533332833118">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,28.599999511838"
+              EndConnector="0,37.2666661182378"
               Start="0,0"
-              End="0,21.099999511838">
+              End="0,29.7666661182378">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.099999511838" />
+                    End="0,29.7666661182378" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1496,30 +1592,30 @@ where [refTable].[order_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="138.766662887567,246.133331911034">
+          TopLeft="142.933329326577,192.399998951356">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="24.9333331512081,26.866666190558"
+              EndConnector="15.299999863406,25.333333068159"
               Start="0,0"
-              End="24.9333331512081,19.366666190558">
+              End="15.299999863406,17.833333068159">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,9.433333095279" />
+                    End="0,8.66666653407948" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,9.433333095279"
-                    Point2="0,13.433333095279"
-                    Point3="4,13.433333095279" />
+                    Point1="0,8.66666653407948"
+                    Point2="0,12.6666665340795"
+                    Point3="4,12.6666665340795" />
                   <mssgle:LineSegment
-                    End="20.9333331512081,13.433333095279" />
+                    End="11.299999863406,12.6666665340795" />
                   <mssgle:CubicBezierSegment
-                    Point1="20.9333331512081,13.433333095279"
-                    Point2="24.9333331512081,13.433333095279"
-                    Point3="24.9333331512081,17.433333095279" />
+                    Point1="11.299999863406,12.6666665340795"
+                    Point2="15.299999863406,12.6666665340795"
+                    Point3="15.299999863406,16.6666665340795" />
                   <mssgle:LineSegment
-                    End="24.9333331512081,19.366666190558" />
+                    End="15.299999863406,17.833333068159" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1530,18 +1626,52 @@ where [refTable].[order_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="164.299995765587,314.599998101592">
+          TopLeft="168.883328848498,331.933331314392">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,35.5333327969577"
+              EndConnector="0,53.7333326703975"
               Start="0,0"
-              End="0,28.0333327969577">
+              End="0,46.2333326703975">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.0333327969577" />
+                    End="0,46.2333326703975" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="158.233329189983,259.333332019515">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.80000000000004,30.999999294877"
+              Start="0,0"
+              End="8.80000000000004,23.499999294877">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.4999996474385" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.4999996474385"
+                    Point2="0,15.4999996474385"
+                    Point3="4,15.4999996474385" />
+                  <mssgle:LineSegment
+                    End="4.80000000000004,15.4999996474385" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.80000000000004,15.4999996474385"
+                    Point2="8.80000000000004,15.4999996474385"
+                    Point3="8.80000000000004,19.4999996474385" />
+                  <mssgle:LineSegment
+                    End="8.80000000000004,23.499999294877" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1789,5 +1919,17 @@ where [refTable].[order_id] = ?</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package.EventHandlers[OnError]\Log Batch Failure"
+          TopLeft="194.999997094274,156.999997660518" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

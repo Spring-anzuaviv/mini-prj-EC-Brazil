@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="IncrementalLoad"
   DTS:PackageType="5"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{048B7297-96CC-4859-AF0D-11031DAE9396}">
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{F6776DEE-7ED6-4DCD-BCDF-95E95A087EF2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -35,20 +35,20 @@
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="50"
+              DTS:MaximumWidth="100"
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="order_id"
-              DTS:DTSID="{DB43832A-2A4B-4D05-AE9E-9DAF080C0D45}"
+              DTS:DTSID="{76F71117-19BA-4E32-ACFA-1C02613F467E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="50"
+              DTS:MaximumWidth="100"
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="customer_id"
-              DTS:DTSID="{33A242FA-846C-43FD-8A4B-FA63E45F95B4}"
+              DTS:DTSID="{1813BDEE-6795-4C7B-919D-FAA2BF60400C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -57,7 +57,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="order_status"
-              DTS:DTSID="{D0A3D12A-F462-4EFC-B26C-F48F2BB2EF20}"
+              DTS:DTSID="{500E8535-65BE-498B-8638-3B2E123D18A9}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -66,7 +66,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="order_purchase_timestamp"
-              DTS:DTSID="{A1CC82D9-3223-46E5-8B40-4373B833266C}"
+              DTS:DTSID="{22A06CB9-DA5E-4000-B78F-AA4EEC3A05B8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -75,7 +75,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="order_approved_at"
-              DTS:DTSID="{4D3A253C-000C-4D86-9B3A-80AE72104378}"
+              DTS:DTSID="{852A2815-DEAF-44AC-915B-D9D78443B456}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -84,7 +84,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="order_delivered_carrier_date"
-              DTS:DTSID="{37A2CEE0-E238-45B1-976B-B5BA9E138560}"
+              DTS:DTSID="{93AA9C02-BCF4-4577-94BA-8E528F16E1AE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -93,7 +93,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="order_delivered_customer_date"
-              DTS:DTSID="{FD95569A-CE30-4877-91B8-C199F796BC12}"
+              DTS:DTSID="{5DCF6F8B-454E-4483-9877-D74898E4FB59}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -102,7 +102,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="order_estimated_delivery_date"
-              DTS:DTSID="{7ADBD71E-39D5-41EC-82F1-E94AAE6F5287}"
+              DTS:DTSID="{0405D8D1-921F-4621-865B-8D5E81CCD887}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -136,6 +136,15 @@
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{B8B02513-2221-4314-AAA5-9A1A8DB277AF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{C36BB37A-0D8B-4227-AC60-0FC26A8E929D}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
@@ -155,38 +164,35 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Execute SQL Task"
+      DTS:refId="Package\Create Batch"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{BAFAC92B-BAFC-4FEE-9C93-1736A10AC3F5}"
+      DTS:DTSID="{3883F512-3243-4DF7-B8C7-C2FA8DECBDF1}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Execute SQL Task"
+      DTS:ObjectName="Create Batch"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{5FF054F3-5477-4C3F-BD97-85810DBC8733}"
-          SQLTask:SqlStatementSource="SELECT LSET, CET&#xA;FROM dbo.data_flow&#xA;WHERE name = 'orders';"
+          SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;&#xA;INSERT INTO dbo.etl_batch (flow_name, LSET, CET)&#xA;OUTPUT INSERTED.batch_id AS batch_id&#xA;SELECT name, LSET, CET&#xA;FROM dbo.data_flow&#xA;WHERE name = 'orders';"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
             SQLTask:ResultName="0"
-            SQLTask:DtsVariableName="User::dtLSET" />
-          <SQLTask:ResultBinding
-            SQLTask:ResultName="1"
-            SQLTask:DtsVariableName="User::dtCET" />
+            SQLTask:DtsVariableName="User::BatchID" />
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Load Orders CSV"
+      DTS:refId="Package\Extract Orders"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{659BBE36-9A01-43AF-A964-3E45973C216F}"
+      DTS:DTSID="{26D0181E-B758-4D41-A926-2A36BE69E619}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Load Orders CSV"
+      DTS:ObjectName="Extract Orders"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -194,7 +200,7 @@
           version="1">
           <components>
             <component
-              refId="Package\Load Orders CSV\Conditional Split"
+              refId="Package\Extract Orders\Conditional Split"
               componentClassID="Microsoft.ConditionalSplit"
               contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
@@ -202,35 +208,35 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Load Orders CSV\Conditional Split.Inputs[Conditional Split Input]"
+                  refId="Package\Extract Orders\Conditional Split.Inputs[Conditional Split Input]"
                   description="Input to the Conditional Split Transformation"
                   name="Conditional Split Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load Orders CSV\Conditional Split.Inputs[Conditional Split Input].Columns[dt_purchase]"
+                      refId="Package\Extract Orders\Conditional Split.Inputs[Conditional Split Input].Columns[dt_purchase]"
                       cachedDataType="dbTimeStamp"
                       cachedName="dt_purchase"
-                      lineageId="Package\Load Orders CSV\Derived Column.Outputs[Derived Column Output].Columns[dt_purchase]" />
+                      lineageId="Package\Extract Orders\Derived Column.Outputs[Derived Column Output].Columns[dt_purchase]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load Orders CSV\Conditional Split.Outputs[Orders_in_range]"
+                  refId="Package\Extract Orders\Conditional Split.Outputs[Orders_in_range]"
                   description="Output 1 of the Conditional Split Transformation"
                   errorOrTruncationOperation="Computation"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Orders_in_range"
-                  synchronousInputId="Package\Load Orders CSV\Conditional Split.Inputs[Conditional Split Input]"
+                  synchronousInputId="Package\Extract Orders\Conditional Split.Inputs[Conditional Split Input]"
                   truncationRowDisposition="FailComponent">
                   <properties>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Load Orders CSV\Derived Column.Outputs[Derived Column Output].Columns[dt_purchase]} &gt;= @[User::dtLSET] &amp;&amp; #{Package\Load Orders CSV\Derived Column.Outputs[Derived Column Output].Columns[dt_purchase]} &lt; @[User::dtCET]</property>
+                      name="Expression">#{Package\Extract Orders\Derived Column.Outputs[Derived Column Output].Columns[dt_purchase]} &gt;= @[User::dtLSET] &amp;&amp; #{Package\Extract Orders\Derived Column.Outputs[Derived Column Output].Columns[dt_purchase]} &lt; @[User::dtCET]</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -245,11 +251,11 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load Orders CSV\Conditional Split.Outputs[Conditional Split Default Output]"
+                  refId="Package\Extract Orders\Conditional Split.Outputs[Conditional Split Default Output]"
                   description="Default Output of the Conditional Split Transformation"
                   exclusionGroup="1"
                   name="Conditional Split Default Output"
-                  synchronousInputId="Package\Load Orders CSV\Conditional Split.Inputs[Conditional Split Input]">
+                  synchronousInputId="Package\Extract Orders\Conditional Split.Inputs[Conditional Split Input]">
                   <properties>
                     <property
                       dataType="System.Boolean"
@@ -258,23 +264,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load Orders CSV\Conditional Split.Outputs[Conditional Split Error Output]"
+                  refId="Package\Extract Orders\Conditional Split.Outputs[Conditional Split Error Output]"
                   description="Error Output of the Conditional Split Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Conditional Split Error Output"
-                  synchronousInputId="Package\Load Orders CSV\Conditional Split.Inputs[Conditional Split Input]">
+                  synchronousInputId="Package\Extract Orders\Conditional Split.Inputs[Conditional Split Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      refId="Package\Extract Orders\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load Orders CSV\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Extract Orders\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load Orders CSV\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      refId="Package\Extract Orders\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load Orders CSV\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Extract Orders\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -283,7 +289,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Load Orders CSV\Data Conversion"
+              refId="Package\Extract Orders\Data Conversion"
               componentClassID="Microsoft.DataConvert"
               contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Data Conversion"
@@ -291,83 +297,83 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Load Orders CSV\Data Conversion.Inputs[Data Conversion Input]"
+                  refId="Package\Extract Orders\Data Conversion.Inputs[Data Conversion Input]"
                   name="Data Conversion Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Inputs[Data Conversion Input].Columns[order_id]"
+                      refId="Package\Extract Orders\Data Conversion.Inputs[Data Conversion Input].Columns[order_id]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="100"
                       cachedName="order_id"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_id]" />
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_id]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Inputs[Data Conversion Input].Columns[customer_id]"
+                      refId="Package\Extract Orders\Data Conversion.Inputs[Data Conversion Input].Columns[customer_id]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="100"
                       cachedName="customer_id"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[customer_id]" />
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[customer_id]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Inputs[Data Conversion Input].Columns[order_status]"
+                      refId="Package\Extract Orders\Data Conversion.Inputs[Data Conversion Input].Columns[order_status]"
                       cachedCodepage="65001"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="order_status"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_status]" />
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_status]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Inputs[Data Conversion Input].Columns[order_purchase_timestamp]"
+                      refId="Package\Extract Orders\Data Conversion.Inputs[Data Conversion Input].Columns[order_purchase_timestamp]"
                       cachedCodepage="65001"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="order_purchase_timestamp"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]" />
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Inputs[Data Conversion Input].Columns[order_approved_at]"
+                      refId="Package\Extract Orders\Data Conversion.Inputs[Data Conversion Input].Columns[order_approved_at]"
                       cachedCodepage="65001"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="order_approved_at"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_approved_at]" />
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_approved_at]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Inputs[Data Conversion Input].Columns[order_delivered_carrier_date]"
+                      refId="Package\Extract Orders\Data Conversion.Inputs[Data Conversion Input].Columns[order_delivered_carrier_date]"
                       cachedCodepage="65001"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="order_delivered_carrier_date"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_carrier_date]" />
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_carrier_date]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Inputs[Data Conversion Input].Columns[order_delivered_customer_date]"
+                      refId="Package\Extract Orders\Data Conversion.Inputs[Data Conversion Input].Columns[order_delivered_customer_date]"
                       cachedCodepage="65001"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="order_delivered_customer_date"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_customer_date]" />
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_customer_date]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Inputs[Data Conversion Input].Columns[order_estimated_delivery_date]"
+                      refId="Package\Extract Orders\Data Conversion.Inputs[Data Conversion Input].Columns[order_estimated_delivery_date]"
                       cachedCodepage="65001"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="order_estimated_delivery_date"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_estimated_delivery_date]" />
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_estimated_delivery_date]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output]"
+                  refId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output]"
                   exclusionGroup="1"
                   name="Data Conversion Output"
-                  synchronousInputId="Package\Load Orders CSV\Data Conversion.Inputs[Data Conversion Input]">
+                  synchronousInputId="Package\Extract Orders\Data Conversion.Inputs[Data Conversion Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_id]"
+                      refId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_id]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="100"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_id]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_id]"
                       name="u_order_id"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -375,7 +381,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_id]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_id]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -383,12 +389,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_customer_id]"
+                      refId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_customer_id]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="100"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_customer_id]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_customer_id]"
                       name="u_customer_id"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -396,7 +402,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[customer_id]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[customer_id]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -404,12 +410,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_status]"
+                      refId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_status]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="50"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_status]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_status]"
                       name="u_order_status"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -417,7 +423,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_status]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_status]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -425,12 +431,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_purchase_timestamp]"
+                      refId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_purchase_timestamp]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="50"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_purchase_timestamp]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_purchase_timestamp]"
                       name="u_order_purchase_timestamp"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -438,7 +444,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -446,12 +452,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_approved_at]"
+                      refId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_approved_at]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="50"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_approved_at]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_approved_at]"
                       name="u_order_approved_at"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -459,7 +465,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_approved_at]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_approved_at]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -467,12 +473,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_delivered_carrier_date]"
+                      refId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_delivered_carrier_date]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="50"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_delivered_carrier_date]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_delivered_carrier_date]"
                       name="u_order_delivered_carrier_date"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -480,7 +486,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_carrier_date]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_carrier_date]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -488,12 +494,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_delivered_customer_date]"
+                      refId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_delivered_customer_date]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="50"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_delivered_customer_date]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_delivered_customer_date]"
                       name="u_order_delivered_customer_date"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -501,7 +507,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_customer_date]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_customer_date]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -509,12 +515,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_estimated_delivery_date]"
+                      refId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_estimated_delivery_date]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="50"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_estimated_delivery_date]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_estimated_delivery_date]"
                       name="u_order_estimated_delivery_date"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -522,7 +528,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_estimated_delivery_date]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_estimated_delivery_date]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -533,22 +539,22 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Error Output]"
+                  refId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Data Conversion Error Output"
-                  synchronousInputId="Package\Load Orders CSV\Data Conversion.Inputs[Data Conversion Input]">
+                  synchronousInputId="Package\Extract Orders\Data Conversion.Inputs[Data Conversion Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      refId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      refId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -557,7 +563,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Load Orders CSV\Derived Column"
+              refId="Package\Extract Orders\Derived Column"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
@@ -565,34 +571,34 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Load Orders CSV\Derived Column.Inputs[Derived Column Input]"
+                  refId="Package\Extract Orders\Derived Column.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load Orders CSV\Derived Column.Inputs[Derived Column Input].Columns[u_order_purchase_timestamp]"
+                      refId="Package\Extract Orders\Derived Column.Inputs[Derived Column Input].Columns[u_order_purchase_timestamp]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="u_order_purchase_timestamp"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_purchase_timestamp]" />
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_purchase_timestamp]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load Orders CSV\Derived Column.Outputs[Derived Column Output]"
+                  refId="Package\Extract Orders\Derived Column.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Load Orders CSV\Derived Column.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Extract Orders\Derived Column.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Derived Column.Outputs[Derived Column Output].Columns[dt_purchase]"
+                      refId="Package\Extract Orders\Derived Column.Outputs[Derived Column Output].Columns[dt_purchase]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Load Orders CSV\Derived Column.Outputs[Derived Column Output].Columns[dt_purchase]"
+                      lineageId="Package\Extract Orders\Derived Column.Outputs[Derived Column Output].Columns[dt_purchase]"
                       name="dt_purchase"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -600,7 +606,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_DBTIMESTAMP)#{Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_purchase_timestamp]}</property>
+                          name="Expression">(DT_DBTIMESTAMP)#{Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_purchase_timestamp]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -613,23 +619,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load Orders CSV\Derived Column.Outputs[Derived Column Error Output]"
+                  refId="Package\Extract Orders\Derived Column.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Load Orders CSV\Derived Column.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Extract Orders\Derived Column.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\Extract Orders\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load Orders CSV\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Extract Orders\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load Orders CSV\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\Extract Orders\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load Orders CSV\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Extract Orders\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -638,7 +644,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Load Orders CSV\Derived Column 1"
+              refId="Package\Extract Orders\Derived Column 1"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
@@ -646,7 +652,7 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Load Orders CSV\Derived Column 1.Inputs[Derived Column Input]"
+                  refId="Package\Extract Orders\Derived Column 1.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <externalMetadataColumns />
@@ -654,19 +660,19 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load Orders CSV\Derived Column 1.Outputs[Derived Column Output]"
+                  refId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Load Orders CSV\Derived Column 1.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Extract Orders\Derived Column 1.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Derived Column 1.Outputs[Derived Column Output].Columns[_source_file]"
+                      refId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Output].Columns[_source_file]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       length="255"
-                      lineageId="Package\Load Orders CSV\Derived Column 1.Outputs[Derived Column Output].Columns[_source_file]"
+                      lineageId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Output].Columns[_source_file]"
                       name="_source_file"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -684,11 +690,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Derived Column 1.Outputs[Derived Column Output].Columns[_loaded_at]"
+                      refId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Output].Columns[_loaded_at]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Load Orders CSV\Derived Column 1.Outputs[Derived Column Output].Columns[_loaded_at]"
+                      lineageId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Output].Columns[_loaded_at]"
                       name="_loaded_at"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -705,27 +711,49 @@
                           name="FriendlyExpression">GETDATE()</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Output].Columns[_batch_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Output].Columns[_batch_id]"
+                      name="_batch_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::BatchID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::BatchID]</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load Orders CSV\Derived Column 1.Outputs[Derived Column Error Output]"
+                  refId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Load Orders CSV\Derived Column 1.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Extract Orders\Derived Column 1.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load Orders CSV\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load Orders CSV\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load Orders CSV\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -734,7 +762,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Load Orders CSV\Flat File Source"
+              refId="Package\Extract Orders\Flat File Source"
               componentClassID="Microsoft.FlatFileSource"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
@@ -754,25 +782,25 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load Orders CSV\Flat File Source.Connections[FlatFileConnection]"
+                  refId="Package\Extract Orders\Flat File Source.Connections[FlatFileConnection]"
                   connectionManagerID="Package.ConnectionManagers[FF_Orders]"
                   connectionManagerRefId="Package.ConnectionManagers[FF_Orders]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output]"
+                  refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output]"
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_id]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_id]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_id]"
-                      length="50"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_id]"
+                      externalMetadataColumnId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_id]"
+                      length="100"
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_id]"
                       name="order_id"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -787,14 +815,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[customer_id]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[customer_id]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
-                      length="50"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[customer_id]"
+                      externalMetadataColumnId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
+                      length="100"
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[customer_id]"
                       name="customer_id"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -809,14 +837,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_status]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_status]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_status]"
+                      externalMetadataColumnId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_status]"
                       length="50"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_status]"
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_status]"
                       name="order_status"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -831,14 +859,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_purchase_timestamp]"
+                      externalMetadataColumnId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_purchase_timestamp]"
                       length="50"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]"
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]"
                       name="order_purchase_timestamp"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -853,14 +881,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_approved_at]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_approved_at]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_approved_at]"
+                      externalMetadataColumnId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_approved_at]"
                       length="50"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_approved_at]"
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_approved_at]"
                       name="order_approved_at"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -875,14 +903,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_carrier_date]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_carrier_date]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_delivered_carrier_date]"
+                      externalMetadataColumnId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_delivered_carrier_date]"
                       length="50"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_carrier_date]"
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_carrier_date]"
                       name="order_delivered_carrier_date"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -897,14 +925,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_customer_date]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_customer_date]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_delivered_customer_date]"
+                      externalMetadataColumnId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_delivered_customer_date]"
                       length="50"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_customer_date]"
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_delivered_customer_date]"
                       name="order_delivered_customer_date"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -919,14 +947,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_estimated_delivery_date]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_estimated_delivery_date]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_estimated_delivery_date]"
+                      externalMetadataColumnId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_estimated_delivery_date]"
                       length="50"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].Columns[order_estimated_delivery_date]"
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].Columns[order_estimated_delivery_date]"
                       name="order_estimated_delivery_date"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -944,49 +972,49 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_id]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_id]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="100"
                       name="order_id" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="100"
                       name="customer_id" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_status]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_status]"
                       codePage="65001"
                       dataType="str"
                       length="50"
                       name="order_status" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_purchase_timestamp]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_purchase_timestamp]"
                       codePage="65001"
                       dataType="str"
                       length="50"
                       name="order_purchase_timestamp" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_approved_at]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_approved_at]"
                       codePage="65001"
                       dataType="str"
                       length="50"
                       name="order_approved_at" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_delivered_carrier_date]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_delivered_carrier_date]"
                       codePage="65001"
                       dataType="str"
                       length="50"
                       name="order_delivered_carrier_date" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_delivered_customer_date]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_delivered_customer_date]"
                       codePage="65001"
                       dataType="str"
                       length="50"
                       name="order_delivered_customer_date" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_estimated_delivery_date]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_estimated_delivery_date]"
                       codePage="65001"
                       dataType="str"
                       length="50"
@@ -994,27 +1022,27 @@
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Error Output]"
+                  refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Error Output]"
                   isErrorOut="true"
                   name="Flat File Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       codePage="65001"
                       dataType="text"
                       description="Flat File Source Error Output Column"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       name="Flat File Source Error Output Column" />
                     <outputColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1023,7 +1051,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Load Orders CSV\OLE DB Destination"
+              refId="Package\Extract Orders\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
@@ -1080,7 +1108,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load Orders CSV\OLE DB Destination.Connections[OleDbConnection]"
+                  refId="Package\Extract Orders\OLE DB Destination.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[LAPTOP-TR61RHJU.Olist_Staging]"
                   connectionManagerRefId="Package.ConnectionManagers[LAPTOP-TR61RHJU.Olist_Staging]"
                   description="The OLE DB runtime connection used to access the database."
@@ -1088,155 +1116,165 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[_source_file]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[_source_file]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="_source_file"
-                      externalMetadataColumnId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_source_file]"
-                      lineageId="Package\Load Orders CSV\Derived Column 1.Outputs[Derived Column Output].Columns[_source_file]" />
+                      externalMetadataColumnId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_source_file]"
+                      lineageId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Output].Columns[_source_file]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[_loaded_at]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[_loaded_at]"
                       cachedDataType="dbTimeStamp"
                       cachedName="_loaded_at"
-                      externalMetadataColumnId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_loaded_at]"
-                      lineageId="Package\Load Orders CSV\Derived Column 1.Outputs[Derived Column Output].Columns[_loaded_at]" />
+                      externalMetadataColumnId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_loaded_at]"
+                      lineageId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Output].Columns[_loaded_at]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_id]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_id]"
                       cachedDataType="wstr"
                       cachedLength="100"
                       cachedName="u_order_id"
-                      externalMetadataColumnId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_id]" />
+                      externalMetadataColumnId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_id]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_customer_id]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_customer_id]"
                       cachedDataType="wstr"
                       cachedLength="100"
                       cachedName="u_customer_id"
-                      externalMetadataColumnId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_customer_id]" />
+                      externalMetadataColumnId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_customer_id]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_status]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_status]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="u_order_status"
-                      externalMetadataColumnId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_status]"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_status]" />
+                      externalMetadataColumnId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_status]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_status]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_purchase_timestamp]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_purchase_timestamp]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="u_order_purchase_timestamp"
-                      externalMetadataColumnId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_purchase_timestamp]"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_purchase_timestamp]" />
+                      externalMetadataColumnId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_purchase_timestamp]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_purchase_timestamp]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_approved_at]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_approved_at]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="u_order_approved_at"
-                      externalMetadataColumnId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_approved_at]"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_approved_at]" />
+                      externalMetadataColumnId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_approved_at]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_approved_at]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_delivered_carrier_date]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_delivered_carrier_date]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="u_order_delivered_carrier_date"
-                      externalMetadataColumnId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_delivered_carrier_date]"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_delivered_carrier_date]" />
+                      externalMetadataColumnId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_delivered_carrier_date]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_delivered_carrier_date]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_delivered_customer_date]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_delivered_customer_date]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="u_order_delivered_customer_date"
-                      externalMetadataColumnId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_delivered_customer_date]"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_delivered_customer_date]" />
+                      externalMetadataColumnId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_delivered_customer_date]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_delivered_customer_date]" />
                     <inputColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_estimated_delivery_date]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_estimated_delivery_date]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="u_order_estimated_delivery_date"
-                      externalMetadataColumnId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_estimated_delivery_date]"
-                      lineageId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_estimated_delivery_date]" />
+                      externalMetadataColumnId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_estimated_delivery_date]"
+                      lineageId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_estimated_delivery_date]" />
+                    <inputColumn
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[_batch_id]"
+                      cachedDataType="i4"
+                      cachedName="_batch_id"
+                      externalMetadataColumnId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_batch_id]"
+                      lineageId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Output].Columns[_batch_id]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
                       dataType="wstr"
                       length="100"
                       name="order_id" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
                       dataType="wstr"
                       length="100"
                       name="customer_id" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_status]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_status]"
                       dataType="wstr"
                       length="50"
                       name="order_status" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_purchase_timestamp]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_purchase_timestamp]"
                       dataType="wstr"
                       length="50"
                       name="order_purchase_timestamp" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_approved_at]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_approved_at]"
                       dataType="wstr"
                       length="50"
                       name="order_approved_at" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_delivered_carrier_date]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_delivered_carrier_date]"
                       dataType="wstr"
                       length="50"
                       name="order_delivered_carrier_date" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_delivered_customer_date]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_delivered_customer_date]"
                       dataType="wstr"
                       length="50"
                       name="order_delivered_customer_date" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_estimated_delivery_date]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_estimated_delivery_date]"
                       dataType="wstr"
                       length="50"
                       name="order_estimated_delivery_date" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_source_file]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_source_file]"
                       dataType="wstr"
                       length="255"
                       name="_source_file" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_loaded_at]"
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_loaded_at]"
                       dataType="dbTimeStamp2"
                       name="_loaded_at"
                       scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_batch_id]"
+                      dataType="i4"
+                      name="_batch_id" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load Orders CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Extract Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Extract Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load Orders CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Extract Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load Orders CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Extract Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load Orders CSV\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Extract Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1247,32 +1285,91 @@
           </components>
           <paths>
             <path
-              refId="Package\Load Orders CSV.Paths[Data Conversion Output]"
-              endId="Package\Load Orders CSV\Derived Column.Inputs[Derived Column Input]"
+              refId="Package\Extract Orders.Paths[Data Conversion Output]"
+              endId="Package\Extract Orders\Derived Column.Inputs[Derived Column Input]"
               name="Data Conversion Output"
-              startId="Package\Load Orders CSV\Data Conversion.Outputs[Data Conversion Output]" />
+              startId="Package\Extract Orders\Data Conversion.Outputs[Data Conversion Output]" />
             <path
-              refId="Package\Load Orders CSV.Paths[Derived Column Output]"
-              endId="Package\Load Orders CSV\Conditional Split.Inputs[Conditional Split Input]"
+              refId="Package\Extract Orders.Paths[Derived Column Output]"
+              endId="Package\Extract Orders\Conditional Split.Inputs[Conditional Split Input]"
               name="Derived Column Output"
-              startId="Package\Load Orders CSV\Derived Column.Outputs[Derived Column Output]" />
+              startId="Package\Extract Orders\Derived Column.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load Orders CSV.Paths[Derived Column Output1]"
-              endId="Package\Load Orders CSV\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              refId="Package\Extract Orders.Paths[Derived Column Output1]"
+              endId="Package\Extract Orders\OLE DB Destination.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\Load Orders CSV\Derived Column 1.Outputs[Derived Column Output]" />
+              startId="Package\Extract Orders\Derived Column 1.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load Orders CSV.Paths[Flat File Source Output]"
-              endId="Package\Load Orders CSV\Data Conversion.Inputs[Data Conversion Input]"
+              refId="Package\Extract Orders.Paths[Flat File Source Output]"
+              endId="Package\Extract Orders\Data Conversion.Inputs[Data Conversion Input]"
               name="Flat File Source Output"
-              startId="Package\Load Orders CSV\Flat File Source.Outputs[Flat File Source Output]" />
+              startId="Package\Extract Orders\Flat File Source.Outputs[Flat File Source Output]" />
             <path
-              refId="Package\Load Orders CSV.Paths[Orders_in_range]"
-              endId="Package\Load Orders CSV\Derived Column 1.Inputs[Derived Column Input]"
+              refId="Package\Extract Orders.Paths[Orders_in_range]"
+              endId="Package\Extract Orders\Derived Column 1.Inputs[Derived Column Input]"
               name="Orders_in_range"
-              startId="Package\Load Orders CSV\Conditional Split.Outputs[Orders_in_range]" />
+              startId="Package\Extract Orders\Conditional Split.Outputs[Orders_in_range]" />
           </paths>
         </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get LSET"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2ED20B8C-00F3-4313-84D6-0C3A892B6FDB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get LSET"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5FF054F3-5477-4C3F-BD97-85810DBC8733}"
+          SQLTask:SqlStatementSource="SELECT LSET, CET&#xA;FROM dbo.data_flow&#xA;WHERE name = 'orders';"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="LSET"
+            SQLTask:DtsVariableName="User::dtLSET" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="CET"
+            SQLTask:DtsVariableName="User::dtCET" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set CET"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{BAFAC92B-BAFC-4FEE-9C93-1736A10AC3F5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set CET"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5FF054F3-5477-4C3F-BD97-85810DBC8733}"
+          SQLTask:SqlStatementSource="UPDATE dbo.data_flow&#xA;SET CET = DATEADD(MONTH, 1, LSET)&#xA;WHERE name = 'orders';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set LSET"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F5A214E2-EBE2-4757-A41A-BCA8BB31B85D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set LSET"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5FF054F3-5477-4C3F-BD97-85810DBC8733}"
+          SQLTask:SqlStatementSource="UPDATE dbo.data_flow&#xA;SET LSET = CET&#xA;WHERE name = 'orders';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -1280,11 +1377,35 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{1236C4BF-A39D-4B8D-A1A8-1F3A24DA932F}"
-      DTS:From="Package\Execute SQL Task"
+      DTS:DTSID="{1078D64E-7B8F-434E-BD54-A4A4C32E29F9}"
+      DTS:From="Package\Set CET"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Load Orders CSV" />
+      DTS:To="Package\Get LSET" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6F511E56-43DA-4519-B5E6-5A2064A76B49}"
+      DTS:From="Package\Get LSET"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Create Batch" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{5D1C3E8D-808B-4CDD-8059-93D0D2304D57}"
+      DTS:From="Package\Extract Orders"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Set LSET" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{EDF4859B-4647-421C-8535-FAA01A9B77A3}"
+      DTS:From="Package\Create Batch"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Extract Orders" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -1297,29 +1418,155 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="117.6,41.6"
+          Id="Package\Set CET"
+          TopLeft="269.166651960049,1.06581410364015E-14" />
         <NodeLayout
           Size="164.8,41.6"
-          Id="Package\Execute SQL Task"
-          TopLeft="284.166651140485,45.9333330139187" />
+          Id="Package\Get LSET"
+          TopLeft="254.166652779613,86.6666660639974" />
         <NodeLayout
-          Size="160,41.6"
-          Id="Package\Load Orders CSV"
-          TopLeft="287.499984291693,129.133332435356" />
+          Size="145.6,41.6"
+          Id="Package\Extract Orders"
+          TopLeft="267.499985384445,205.399998571674" />
+        <NodeLayout
+          Size="122.4,41.6"
+          Id="Package\Set LSET"
+          TopLeft="261.666652369831,282.533331368632" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="367.033317716089,87.5333330139187">
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="340.299985384445,246.999998571674">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,41.5999994214376"
+              EndConnector="-17.433333014614,35.5333327969577"
               Start="0,0"
-              End="0,34.0999994214376">
+              End="-17.433333014614,28.0333327969577">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,34.0999994214376" />
+                    End="0,13.7666663984788" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.7666663984788"
+                    Point2="0,17.7666663984788"
+                    Point3="-4,17.7666663984788" />
+                  <mssgle:LineSegment
+                    End="-13.433333014614,17.7666663984788" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.433333014614,17.7666663984788"
+                    Point2="-17.433333014614,17.7666663984788"
+                    Point3="-17.433333014614,21.7666663984788" />
+                  <mssgle:LineSegment
+                    End="-17.433333014614,28.0333327969577" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Create Batch"
+          TopLeft="249.999986340603,145.599998987516" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="327.966651960049,41.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.60000081956412,45.0666660639974"
+              Start="0,0"
+              End="8.60000081956412,37.5666660639974">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5333330319987" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5333330319987"
+                    Point2="0,22.5333330319987"
+                    Point3="4,22.5333330319987" />
+                  <mssgle:LineSegment
+                    End="4.60000081956412,22.5333330319987" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.60000081956412,22.5333330319987"
+                    Point2="8.60000081956412,22.5333330319987"
+                    Point3="8.60000081956412,26.5333330319987" />
+                  <mssgle:LineSegment
+                    End="8.60000081956412,37.5666660639974" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="418.966652779613,107.466666063997">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-4.16666643901021,58.9333329235183"
+              Start="0,0"
+              End="3.33333356098979,58.9333329235183">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,0"
+                    Point2="22.5,0"
+                    Point3="22.5,4" />
+                  <mssgle:LineSegment
+                    End="22.5,54.9333329235183" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,54.9333329235183"
+                    Point2="22.5,58.9333329235183"
+                    Point3="18.5,58.9333329235183" />
+                  <mssgle:LineSegment
+                    End="3.33333356098979,58.9333329235183" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="249.999986340603,166.399998987516">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17.4999990438423,59.7999995841583"
+              Start="0,0"
+              End="9.99999904384228,59.7999995841583">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.5,0"
+                    Point2="-22.5,0"
+                    Point3="-22.5,4" />
+                  <mssgle:LineSegment
+                    End="-22.5,55.7999995841583" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.5,55.7999995841583"
+                    Point2="-22.5,59.7999995841583"
+                    Point3="-18.5,59.7999995841583" />
+                  <mssgle:LineSegment
+                    End="9.99999904384228,59.7999995841583" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1332,32 +1579,32 @@
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Load Orders CSV">
+    design-time-name="Package\Extract Orders">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="151.2,41.6"
-          Id="Package\Load Orders CSV\Flat File Source"
-          TopLeft="126.666659745905,47.6666663351986" />
+          Id="Package\Extract Orders\Flat File Source"
+          TopLeft="169.999997466803,31.9999995231629" />
         <NodeLayout
           Size="156,41.6"
-          Id="Package\Load Orders CSV\Data Conversion"
-          TopLeft="126.666659745905,134.333332399196" />
+          Id="Package\Extract Orders\Data Conversion"
+          TopLeft="169.999997466803,132.999998018146" />
         <EdgeLayout
-          Id="Package\Load Orders CSV.Paths[Flat File Source Output]"
-          TopLeft="203.466659745905,89.2666663351986">
+          Id="Package\Extract Orders.Paths[Flat File Source Output]"
+          TopLeft="246.799997466803,73.5999995231629">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,45.0666660639975"
+              EndConnector="0,59.3999984949827"
               Start="0,0"
-              End="0,37.5666660639975">
+              End="0,51.8999984949827">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.5666660639975" />
+                    End="0,51.8999984949827" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1368,22 +1615,22 @@
         </EdgeLayout>
         <NodeLayout
           Size="152.8,41.6"
-          Id="Package\Load Orders CSV\Derived Column"
-          TopLeft="130.833326184916,207.133331892954" />
+          Id="Package\Extract Orders\Derived Column"
+          TopLeft="170.999997451901,206.99999691546" />
         <EdgeLayout
-          Id="Package\Load Orders CSV.Paths[Data Conversion Output]"
-          TopLeft="205.94999296541,175.933332399196">
+          Id="Package\Extract Orders.Paths[Data Conversion Output]"
+          TopLeft="247.699997459352,174.599998018146">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,31.1999994937578"
+              EndConnector="0,32.3999988973142"
               Start="0,0"
-              End="0,23.6999994937578">
+              End="0,24.8999988973142">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.6999994937578" />
+                    End="0,24.8999988973142" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1394,22 +1641,22 @@
         </EdgeLayout>
         <NodeLayout
           Size="153.6,41.6"
-          Id="Package\Load Orders CSV\Conditional Split"
-          TopLeft="131.666659472717,303.333331223991" />
+          Id="Package\Extract Orders\Conditional Split"
+          TopLeft="175.999997377396,285.999995738268" />
         <EdgeLayout
-          Id="Package\Load Orders CSV.Paths[Derived Column Output]"
-          TopLeft="207.849992828816,248.733331892954">
+          Id="Package\Extract Orders.Paths[Derived Column Output]"
+          TopLeft="250.099997414649,248.59999691546">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,54.5999993310373"
+              EndConnector="0,37.3999988228083"
               Start="0,0"
-              End="0,47.0999993310373">
+              End="0,29.8999988228083">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,47.0999993310373" />
+                    End="0,29.8999988228083" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1420,62 +1667,62 @@
         </EdgeLayout>
         <NodeLayout
           Size="161.6,41.6"
-          Id="Package\Load Orders CSV\Derived Column 1"
-          TopLeft="124.999993170301,384.799997468789" />
+          Id="Package\Extract Orders\Derived Column 1"
+          TopLeft="172.999997422099,371.999994456768" />
         <EdgeLayout
-          Id="Package\Load Orders CSV.Paths[Orders_in_range]"
-          TopLeft="207.133326321509,344.933331223991">
+          Id="Package\Extract Orders.Paths[Orders_in_range]"
+          TopLeft="253.299997399747,327.599995738268">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,39.8666662447981"
+              EndConnector="0,44.3999987185001"
               Start="0,0"
-              End="0,32.3666662447981">
+              End="0,36.8999987185001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,32.3666662447981" />
+                    End="0,36.8999987185001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-37.4788671875,10.3517901536491,74.957734375,11.6630859375"
+              BoundingBox="-37.4788671875,12.6184563905,74.957734375,11.6630859375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
           Size="171.2,41.6"
-          Id="Package\Load Orders CSV\OLE DB Destination"
-          TopLeft="129.999992897113,462.93333082623" />
+          Id="Package\Extract Orders\OLE DB Destination"
+          TopLeft="184.999997243285,450.199993756414" />
         <EdgeLayout
-          Id="Package\Load Orders CSV.Paths[Derived Column Output1]"
-          TopLeft="205.799993170301,426.399997468789">
+          Id="Package\Extract Orders.Paths[Derived Column Output1]"
+          TopLeft="253.799997422099,413.599994456768">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="9.79999972681205,36.5333333574401"
+              EndConnector="16.7999998211861,36.5999992996455"
               Start="0,0"
-              End="9.79999972681205,29.0333333574401">
+              End="16.7999998211861,29.0999992996455">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.2666666787201" />
+                    End="0,14.2999996498228" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,14.2666666787201"
-                    Point2="0,18.2666666787201"
-                    Point3="4,18.2666666787201" />
+                    Point1="0,14.2999996498228"
+                    Point2="0,18.2999996498228"
+                    Point3="4,18.2999996498228" />
                   <mssgle:LineSegment
-                    End="5.79999972681205,18.2666666787201" />
+                    End="12.7999998211861,18.2999996498228" />
                   <mssgle:CubicBezierSegment
-                    Point1="5.79999972681205,18.2666666787201"
-                    Point2="9.79999972681205,18.2666666787201"
-                    Point3="9.79999972681205,22.2666666787201" />
+                    Point1="12.7999998211861,18.2999996498228"
+                    Point2="16.7999998211861,18.2999996498228"
+                    Point3="16.7999998211861,22.2999996498228" />
                   <mssgle:LineSegment
-                    End="9.79999972681205,29.0333333574401" />
+                    End="16.7999998211861,29.0999992996455" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1488,7 +1735,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Orders CSV\OLE DB Destination">
+    design-time-name="Package\Extract Orders\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

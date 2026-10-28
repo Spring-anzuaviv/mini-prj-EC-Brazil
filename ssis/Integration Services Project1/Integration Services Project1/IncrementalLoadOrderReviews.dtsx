@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{923D8CE1-D171-41CC-8892-26646D229FCD}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{A8FE7BF0-0471-450B-B517-B052DE4A743D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -21,6 +21,8 @@
       DTS:CreationName="FLATFILE"
       DTS:DTSID="{01FE65D4-714C-4744-9DD2-4873EAC6E221}"
       DTS:ObjectName="FF_OrderReviews">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::RawDataFolder] + "\\olist_order_reviews_dataset.csv"</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Format="Delimited"
@@ -104,6 +106,8 @@
       DTS:CreationName="OLEDB"
       DTS:DTSID="{82FECD68-314C-429E-91E2-97671269C588}"
       DTS:ObjectName="LAPTOP-TR61RHJU.Olist_Metadata">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::SqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
@@ -116,6 +120,8 @@
       DTS:CreationName="OLEDB"
       DTS:DTSID="{FF8B65AB-8822-4792-A87A-A3D95ED73481}"
       DTS:ObjectName="LAPTOP-TR61RHJU.Olist_Staging">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::SqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
@@ -1425,13 +1431,25 @@ where [refTable].[order_id] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="117.6,41.6"
-          Id="Package\Set CET"
-          TopLeft="85.8333286436069,57.1999996022383" />
+          Size="139.2,41.6"
+          Id="Package\Create Batch"
+          TopLeft="69.1666628875668,204.533331911034" />
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\Extract Order Reviews"
+          TopLeft="72.4999960387749,272.999998101592" />
         <NodeLayout
           Size="124,41.6"
           Id="Package\Get LSET"
           TopLeft="79.1666623411909,134.333332399196" />
+        <NodeLayout
+          Size="117.6,41.6"
+          Id="Package\Set CET"
+          TopLeft="85.8333286436069,57.1999996022383" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Set LSET"
+          TopLeft="82.4999954923989,350.13333089855" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="141.299995492399,98.7999996022384">
@@ -1454,10 +1472,6 @@ where [refTable].[order_id] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="139.2,41.6"
-          Id="Package\Create Batch"
-          TopLeft="69.1666628875668,204.533331911034" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="139.966662614379,175.933332399196">
@@ -1480,10 +1494,6 @@ where [refTable].[order_id] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="182.4,41.6"
-          Id="Package\Extract Order Reviews"
-          TopLeft="72.4999960387749,272.999998101592" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="138.766662887567,246.133331911034">
@@ -1518,10 +1528,6 @@ where [refTable].[order_id] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="164.8,41.6"
-          Id="Package\Set LSET"
-          TopLeft="82.4999954923989,350.13333089855" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
           TopLeft="164.299995765587,314.599998101592">
@@ -1553,117 +1559,29 @@ where [refTable].[order_id] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="151.2,41.6"
-          Id="Package\Extract Order Reviews\Flat File Source"
-          TopLeft="108.333327414261,0.866666660639968" />
-        <NodeLayout
-          Size="156,41.6"
-          Id="Package\Extract Order Reviews\Data Conversion"
-          TopLeft="97.499994672835,85.7999994033575" />
-        <EdgeLayout
-          Id="Package\Extract Order Reviews.Paths[Flat File Source Output]"
-          TopLeft="183.933327414261,42.46666666064">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-8.43333274142617,43.3333327427176"
-              Start="0,0"
-              End="-8.43333274142617,35.8333327427176">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,17.6666663713588" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,17.6666663713588"
-                    Point2="0,21.6666663713588"
-                    Point3="-4,21.6666663713588" />
-                  <mssgle:LineSegment
-                    End="-4.43333274142617,21.6666663713588" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-4.43333274142617,21.6666663713588"
-                    Point2="-8.43333274142617,21.6666663713588"
-                    Point3="-8.43333274142617,25.6666663713588" />
-                  <mssgle:LineSegment
-                    End="-8.43333274142617,35.8333327427176" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="152.8,41.6"
+          Id="Package\Extract Order Reviews\Derived Column"
+          TopLeft="123.333326594697,343.66666431023" />
         <NodeLayout
           Size="112.8,41.6"
           Id="Package\Extract Order Reviews\Lookup"
           TopLeft="114.999993716677,161.199998879035" />
-        <EdgeLayout
-          Id="Package\Extract Order Reviews.Paths[Data Conversion Output]"
-          TopLeft="173.449994194756,127.399999403358">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,33.7999994756778"
-              Start="0,0"
-              End="0,26.2999994756778">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26.2999994756778" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\Extract Order Reviews\Data Conversion"
+          TopLeft="97.499994672835,85.7999994033575" />
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Extract Order Reviews\Flat File Source"
+          TopLeft="108.333327414261,0.866666660639968" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Extract Order Reviews\OLE DB Destination"
+          TopLeft="124.166659882499,423.93333080815" />
         <NodeLayout
           Size="153.6,41.6"
           Id="Package\Extract Order Reviews\Conditional Split"
           TopLeft="104.999994263053,251.333331585593" />
-        <EdgeLayout
-          Id="Package\Extract Order Reviews.Paths[Lookup Match Output]"
-          TopLeft="171.399993716677,202.799998879035">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="10.4000005463759,48.5333327065573"
-              Start="0,0"
-              End="10.4000005463759,41.0333327065573">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.2666663532787" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.2666663532787"
-                    Point2="0,24.2666663532787"
-                    Point3="4,24.2666663532787" />
-                  <mssgle:LineSegment
-                    End="6.40000054637588,24.2666663532787" />
-                  <mssgle:CubicBezierSegment
-                    Point1="6.40000054637588,24.2666663532787"
-                    Point2="10.4000005463759,24.2666663532787"
-                    Point3="10.4000005463759,28.2666663532787" />
-                  <mssgle:LineSegment
-                    End="10.4000005463759,41.0333327065573" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-42.9913864455621,29.2666663532787,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="152.8,41.6"
-          Id="Package\Extract Order Reviews\Derived Column"
-          TopLeft="123.333326594697,343.66666431023" />
         <EdgeLayout
           Id="Package\Extract Order Reviews.Paths[Reviews_in_range]"
           TopLeft="181.799994263053,292.933331585593">
@@ -1700,10 +1618,78 @@ where [refTable].[order_id] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\Extract Order Reviews\OLE DB Destination"
-          TopLeft="124.166659882499,423.93333080815" />
+        <EdgeLayout
+          Id="Package\Extract Order Reviews.Paths[Lookup Match Output]"
+          TopLeft="171.399993716677,202.799998879035">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.4000005463759,48.5333327065573"
+              Start="0,0"
+              End="10.4000005463759,41.0333327065573">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2666663532787" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2666663532787"
+                    Point2="0,24.2666663532787"
+                    Point3="4,24.2666663532787" />
+                  <mssgle:LineSegment
+                    End="6.40000054637588,24.2666663532787" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.40000054637588,24.2666663532787"
+                    Point2="10.4000005463759,24.2666663532787"
+                    Point3="10.4000005463759,28.2666663532787" />
+                  <mssgle:LineSegment
+                    End="10.4000005463759,41.0333327065573" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-42.9913864455621,29.2666663532787,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Order Reviews.Paths[Flat File Source Output]"
+          TopLeft="183.933327414261,42.46666666064">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.43333274142617,43.3333327427176"
+              Start="0,0"
+              End="-8.43333274142617,35.8333327427176">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.6666663713588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.6666663713588"
+                    Point2="0,21.6666663713588"
+                    Point3="-4,21.6666663713588" />
+                  <mssgle:LineSegment
+                    End="-4.43333274142617,21.6666663713588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.43333274142617,21.6666663713588"
+                    Point2="-8.43333274142617,21.6666663713588"
+                    Point3="-8.43333274142617,25.6666663713588" />
+                  <mssgle:LineSegment
+                    End="-8.43333274142617,35.8333327427176" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Order Reviews.Paths[Derived Column Output]"
           TopLeft="199.733326594698,385.26666431023">
@@ -1735,7 +1721,33 @@ where [refTable].[order_id] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Order Reviews.Paths[Data Conversion Output]"
+          TopLeft="173.449994194756,127.399999403358">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.7999994756778"
+              Start="0,0"
+              End="0,26.2999994756778">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.2999994756778" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -1747,7 +1759,7 @@ where [refTable].[order_id] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1757,7 +1769,7 @@ where [refTable].[order_id] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

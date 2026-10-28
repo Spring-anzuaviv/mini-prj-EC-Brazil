@@ -1,5 +1,9 @@
 # Chặn thư mục cấu hình của VS Code
 .vscode/
 .vs/
+*.dtproj.user
+*.suo
+**/bin/
+**/obj/
 # Python cache
 __pycache__/

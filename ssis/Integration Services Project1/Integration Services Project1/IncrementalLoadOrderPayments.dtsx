@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{1A262F77-12A4-4CA1-8FAE-D6795F9725D3}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{F7F1CF4B-5039-483B-A158-EC63ACAAA6F0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -21,6 +21,8 @@
       DTS:CreationName="FLATFILE"
       DTS:DTSID="{7209A62E-46E4-4B0C-97BB-2D2562FBC919}"
       DTS:ObjectName="FF_OrderPayments">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::RawDataFolder] + "\\olist_order_payments_dataset.csv"</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Format="Delimited"
@@ -82,22 +84,12 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LAPTOP-TR61RHJU (SQL Server 16.0.1000.6 - LAPTOP-TR61RHJU\LENOVO)]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{CAE2F402-F372-484C-BE63-610054884ED1}"
-      DTS:ObjectName="LAPTOP-TR61RHJU (SQL Server 16.0.1000.6 - LAPTOP-TR61RHJU\LENOVO)">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-TR61RHJU (SQL Server 16.0.1000.6 - LAPTOP-TR61RHJU\LENOVO);Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{CAE2F402-F372-484C-BE63-610054884ED1}LAPTOP-TR61RHJU (SQL Server 16.0.1000.6 - LAPTOP-TR61RHJU\LENOVO);Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LAPTOP-TR61RHJU.Olist_Metadata]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{B002060B-74DF-4B3D-922D-9C6A5E2FB81F}"
       DTS:ObjectName="LAPTOP-TR61RHJU.Olist_Metadata">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::SqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
@@ -110,6 +102,8 @@
       DTS:CreationName="OLEDB"
       DTS:DTSID="{2B6DAE0D-B58D-41AF-A97A-AD78BC6DE718}"
       DTS:ObjectName="LAPTOP-TR61RHJU.Olist_Staging">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::SqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
@@ -1285,13 +1279,25 @@ where [refTable].[order_id] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="117.6,41.6"
-          Id="Package\Set CET"
-          TopLeft="124.166659882499,86.6666660639975" />
+          Size="139.2,41.6"
+          Id="Package\Create Batch"
+          TopLeft="109.999993989865,246.133331621753" />
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\Extract Order Payments"
+          TopLeft="105.833327550855,318.066664454871" />
         <NodeLayout
           Size="124,41.6"
           Id="Package\Get LSET"
           TopLeft="122.499993306895,162.933332200315" />
+        <NodeLayout
+          Size="117.6,41.6"
+          Id="Package\Set CET"
+          TopLeft="124.166659882499,86.6666660639975" />
+        <NodeLayout
+          Size="122.4,41.6"
+          Id="Package\Set LSET"
+          TopLeft="111.666660565469,386.533330645429" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="183.733326594697,128.266666063997">
@@ -1314,10 +1320,6 @@ where [refTable].[order_id] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="139.2,41.6"
-          Id="Package\Create Batch"
-          TopLeft="109.999993989865,246.133331621753" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="182.04999364838,204.533332200315">
@@ -1340,10 +1342,6 @@ where [refTable].[order_id] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="188.8,41.6"
-          Id="Package\Extract Order Payments"
-          TopLeft="105.833327550855,318.066664454871" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="179.599993989865,287.733331621753">
@@ -1378,10 +1376,6 @@ where [refTable].[order_id] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="122.4,41.6"
-          Id="Package\Set LSET"
-          TopLeft="111.666660565469,386.533330645429" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
           TopLeft="200.233327550855,359.666664454871">
@@ -1425,29 +1419,77 @@ where [refTable].[order_id] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="151.2,41.6"
-          Id="Package\Extract Order Payments\Flat File Source"
-          TopLeft="80.8333289167949,19.9333331947194" />
+          Size="120.8,41.6"
+          Id="Package\Extract Order Payments\Lookup 1"
+          TopLeft="94.1666615216271,176.799998770555" />
         <NodeLayout
           Size="156,41.6"
           Id="Package\Extract Order Payments\Data Conversion"
           TopLeft="84.999995355805,102.266665955517" />
         <NodeLayout
-          Size="120.8,41.6"
-          Id="Package\Extract Order Payments\Lookup 1"
-          TopLeft="94.1666615216271,176.799998770555" />
-        <NodeLayout
-          Size="153.6,41.6"
-          Id="Package\Extract Order Payments\Conditional Split"
-          TopLeft="70.8333294631708,259.999998191993" />
+          Size="171.2,41.6"
+          Id="Package\Extract Order Payments\OLE DB Destination"
+          TopLeft="62.4999965851507,399.066664075189" />
         <NodeLayout
           Size="152.8,41.6"
           Id="Package\Extract Order Payments\Derived Column"
           TopLeft="71.6666627509728,330.19999770383" />
         <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\Extract Order Payments\OLE DB Destination"
-          TopLeft="62.4999965851507,399.066664075189" />
+          Size="151.2,41.6"
+          Id="Package\Extract Order Payments\Flat File Source"
+          TopLeft="80.8333289167949,19.9333331947194" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Extract Order Payments\Conditional Split"
+          TopLeft="70.8333294631708,259.999998191993" />
+        <EdgeLayout
+          Id="Package\Extract Order Payments.Paths[Payments_in_range]"
+          TopLeft="147.849996107072,301.599998191993">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.5999995118379"
+              Start="0,0"
+              End="0,21.0999995118379">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0999995118379" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-43.89634765625,4.85761694341895,87.7926953125,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Order Payments.Paths[Lookup Match Output]"
+          TopLeft="151.099995492399,218.399998770555">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.5999994214377"
+              Start="0,0"
+              End="0,34.0999994214377">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.0999994214377" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,11.2453122107189,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Order Payments.Paths[Flat File Source Output]"
           TopLeft="159.7166621363,61.5333331947194">
@@ -1462,6 +1504,28 @@ where [refTable].[order_id] = ?</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,33.2333327607976" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Order Payments.Paths[Derived Column Output]"
+          TopLeft="148.083329668062,371.79999770383">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.2666663713586"
+              Start="0,0"
+              End="0,19.7666663713586">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.7666663713586" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1504,76 +1568,6 @@ where [refTable].[order_id] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Extract Order Payments.Paths[Lookup Match Output]"
-          TopLeft="151.099995492399,218.399998770555">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,41.5999994214377"
-              Start="0,0"
-              End="0,34.0999994214377">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,34.0999994214377" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,11.2453122107188,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Extract Order Payments.Paths[Payments_in_range]"
-          TopLeft="147.849996107072,301.599998191993">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,28.5999995118379"
-              Start="0,0"
-              End="0,21.0999995118379">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,21.0999995118379" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-43.89634765625,4.85761694341895,87.7926953125,11.384765625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Extract Order Payments.Paths[Derived Column Output]"
-          TopLeft="148.083329668062,371.79999770383">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,27.2666663713586"
-              Start="0,0"
-              End="0,19.7666663713586">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.7666663713586" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -1583,7 +1577,7 @@ where [refTable].[order_id] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1593,7 +1587,7 @@ where [refTable].[order_id] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

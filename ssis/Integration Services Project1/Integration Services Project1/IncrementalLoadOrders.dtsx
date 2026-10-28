@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="IncrementalLoadOrders"
   DTS:PackageType="5"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{B041D6E3-09D9-46CF-A23C-0C86069364B4}">
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{38E63D9C-7499-4AD7-8A6B-ADA8B5304C2A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -113,6 +113,8 @@
       DTS:CreationName="OLEDB"
       DTS:DTSID="{5FF054F3-5477-4C3F-BD97-85810DBC8733}"
       DTS:ObjectName="LAPTOP-TR61RHJU (SQL Server 16.0.1000.6 - LAPTOP-TR61RHJU\LENOVO)">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::SqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
@@ -125,6 +127,8 @@
       DTS:CreationName="OLEDB"
       DTS:DTSID="{2D1F6F39-9706-43ED-BFF8-04B0E5E2DF0E}"
       DTS:ObjectName="LAPTOP-TR61RHJU.Olist_Staging">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::SqlServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
@@ -1420,47 +1424,25 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="117.6,41.6"
-          Id="Package\Set CET"
-          TopLeft="253.425912079344,1.06581410364015E-14" />
-        <NodeLayout
-          Size="164.8,41.6"
-          Id="Package\Get LSET"
-          TopLeft="232.870357646895,73.1851846762645" />
+          Size="139.2,41.6"
+          Id="Package\Create Batch"
+          TopLeft="242.592579337918,149.451850812582" />
         <NodeLayout
           Size="145.6,41.6"
           Id="Package\Extract Orders"
           TopLeft="241.574060875049,235.25185021594" />
         <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Get LSET"
+          TopLeft="232.870357646895,73.1851846762645" />
+        <NodeLayout
+          Size="117.6,41.6"
+          Id="Package\Set CET"
+          TopLeft="253.425912079344,1.06581410364015E-14" />
+        <NodeLayout
           Size="122.4,41.6"
           Id="Package\Set LSET"
           TopLeft="254.259245367146,340.31110874463" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="314.916653121098,276.85185021594">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,63.4592585286901"
-              Start="0,0"
-              End="0,55.9592585286901">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,55.9592585286901" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="139.2,41.6"
-          Id="Package\Create Batch"
-          TopLeft="242.592579337918,149.451850812582" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="313.74813486312,41.6">
@@ -1497,6 +1479,28 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,27.1666661363177" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="314.916653121098,276.85185021594">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63.4592585286901"
+              Start="0,0"
+              End="0,55.9592585286901">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.9592585286901" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

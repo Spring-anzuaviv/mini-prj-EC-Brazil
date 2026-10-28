@@ -2,18 +2,33 @@
 <BuildLog xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ProjectInfo>
     <Name>Integration Services Project1</Name>
-    <LastWriteTime>2026-10-28T04:02:14.4167716Z</LastWriteTime>
+    <LastWriteTime>2026-10-28T08:38:41.2132704Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>FullLoad.dtsx</Name>
-      <LastWriteTime>2026-10-28T02:19:05.8596196Z</LastWriteTime>
+      <LastWriteTime>2026-10-28T06:58:20.9819786Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>IncrementalLoad.dtsx</Name>
-      <LastWriteTime>2026-10-28T05:28:16.0076316Z</LastWriteTime>
+      <Name>IncrementalLoadOrders.dtsx</Name>
+      <LastWriteTime>2026-10-28T06:42:32.654499Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>IncrementalLoadOrderItem.dtsx</Name>
+      <LastWriteTime>2026-10-28T07:41:45.7027009Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>IncrementalLoadOrderPayments.dtsx</Name>
+      <LastWriteTime>2026-10-28T08:21:49.184138Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>IncrementalLoadOrderReviews.dtsx</Name>
+      <LastWriteTime>2026-10-28T08:38:54.8094107Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

@@ -1,0 +1,1781 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/28/2026 3:21:59 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-TR61RHJU"
+  DTS:CreatorName="LAPTOP-TR61RHJU\LENOVO"
+  DTS:DTSID="{62901C1C-53F8-4909-825F-91D1E667395B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{923D8CE1-D171-41CC-8892-26646D229FCD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FF_OrderReviews]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{01FE65D4-714C-4744-9DD2-4873EAC6E221}"
+      DTS:ObjectName="FF_OrderReviews">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="D:\BI\mini project\mini-project\rawData\olist_order_reviews_dataset.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="review_id"
+              DTS:DTSID="{F6CE2FF5-0E9C-41C1-ABC1-B90D5BF61BF9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="order_id"
+              DTS:DTSID="{4F245125-6223-409F-A134-DCED063128FB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="review_score"
+              DTS:DTSID="{63535B6C-8901-4045-A98B-D24790D808D7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="1000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="review_comment_title"
+              DTS:DTSID="{7621A0AF-718F-4594-B787-3B9B4813EC4F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="4000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="review_comment_message"
+              DTS:DTSID="{27F45929-E3B2-4C9B-A070-419A1C4FF72A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="review_creation_date"
+              DTS:DTSID="{AC677A9E-3AEB-4E8E-A18A-A0FDA09A2AE5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="review_answer_timestamp"
+              DTS:DTSID="{A9297717-314C-47AA-9307-BC81EEA56C0A}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-TR61RHJU.Olist_Metadata]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{82FECD68-314C-429E-91E2-97671269C588}"
+      DTS:ObjectName="LAPTOP-TR61RHJU.Olist_Metadata">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-TR61RHJU;Initial Catalog=Olist_Metadata;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{82FECD68-314C-429E-91E2-97671269C588}LAPTOP-TR61RHJU.Olist_Metadata;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-TR61RHJU.Olist_Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FF8B65AB-8822-4792-A87A-A3D95ED73481}"
+      DTS:ObjectName="LAPTOP-TR61RHJU.Olist_Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-TR61RHJU;Initial Catalog=Olist_Staging;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{FF8B65AB-8822-4792-A87A-A3D95ED73481}LAPTOP-TR61RHJU.Olist_Staging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{79B36B6C-53D5-4AD0-9D22-4B2D00B61916}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7C1320C5-E2F6-408A-AEC0-57B14E802D6C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="dtCET">
+      <DTS:VariableValue
+        DTS:DataType="7">10/28/2026 3:25:21 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EC7C142A-1068-4964-AB8E-ACD9CE9B3185}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="dtLSET">
+      <DTS:VariableValue
+        DTS:DataType="7">10/28/2026 3:25:12 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Create Batch"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{04E8F08C-313F-46AD-A98A-952470FB60D6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create Batch"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{82FECD68-314C-429E-91E2-97671269C588}"
+          SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;&#xA;INSERT INTO dbo.etl_batch (flow_name, LSET, CET)&#xA;OUTPUT INSERTED.batch_id AS batch_id&#xA;SELECT name, LSET, CET&#xA;FROM dbo.data_flow&#xA;WHERE name = 'order_reviews';"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::BatchID" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Extract Order Reviews"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{31E204A4-CE13-48E4-B8EB-CAF31944C26C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract Order Reviews"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract Order Reviews\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Extract Order Reviews\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\Conditional Split.Inputs[Conditional Split Input].Columns[dt_purchase]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="dt_purchase"
+                      lineageId="Package\Extract Order Reviews\Lookup.Outputs[Lookup Match Output].Columns[dt_purchase]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Order Reviews\Conditional Split.Outputs[Reviews_in_range]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Reviews_in_range"
+                  synchronousInputId="Package\Extract Order Reviews\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Extract Order Reviews\Lookup.Outputs[Lookup Match Output].Columns[dt_purchase]} &gt;= @[User::dtLSET] &amp;&amp; #{Package\Extract Order Reviews\Lookup.Outputs[Lookup Match Output].Columns[dt_purchase]} &lt; @[User::dtCET]</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">dt_purchase &gt;= @[User::dtLSET] &amp;&amp; dt_purchase &lt; @[User::dtCET]</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Order Reviews\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Extract Order Reviews\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Order Reviews\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Extract Order Reviews\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Order Reviews\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Order Reviews\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Order Reviews\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Extract Order Reviews\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Inputs[Data Conversion Input].Columns[review_id]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="review_id"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_id]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Inputs[Data Conversion Input].Columns[order_id]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="order_id"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Inputs[Data Conversion Input].Columns[review_score]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="review_score"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_score]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Inputs[Data Conversion Input].Columns[review_comment_title]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="review_comment_title"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_comment_title]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Inputs[Data Conversion Input].Columns[review_comment_message]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="4000"
+                      cachedName="review_comment_message"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_comment_message]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Inputs[Data Conversion Input].Columns[review_creation_date]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="review_creation_date"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_creation_date]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Inputs[Data Conversion Input].Columns[review_answer_timestamp]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="review_answer_timestamp"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_answer_timestamp]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Extract Order Reviews\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_id]"
+                      name="u_review_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_id]"
+                      name="u_order_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[order_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_score]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_score]"
+                      name="u_review_score"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_score]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_comment_title]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="1000"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_comment_title]"
+                      name="u_review_comment_title"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_comment_title]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_comment_message]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="4000"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_comment_message]"
+                      name="u_review_comment_message"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_comment_message]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_creation_date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_creation_date]"
+                      name="u_review_creation_date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_creation_date]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_answer_timestamp]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_answer_timestamp]"
+                      name="u_review_answer_timestamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_answer_timestamp]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Extract Order Reviews\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Order Reviews\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Extract Order Reviews\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Extract Order Reviews\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Output].Columns[_source_file]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Output].Columns[_source_file]"
+                      name="_source_file"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,255)"olist_order_reviews_dataset.csv"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,255)"olist_order_reviews_dataset.csv"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Output].Columns[_loaded_at]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Output].Columns[_loaded_at]"
+                      name="_loaded_at"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Output].Columns[_batch_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Output].Columns[_batch_id]"
+                      name="_batch_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::BatchID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::BatchID]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Extract Order Reviews\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Order Reviews\Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Order Reviews\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[FF_OrderReviews]"
+                  connectionManagerRefId="Package.ConnectionManagers[FF_OrderReviews]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_id]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[review_id]"
+                      length="100"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_id]"
+                      name="review_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[order_id]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_id]"
+                      length="100"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[order_id]"
+                      name="order_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_score]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[review_score]"
+                      length="50"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_score]"
+                      name="review_score"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_comment_title]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[review_comment_title]"
+                      length="1000"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_comment_title]"
+                      name="review_comment_title"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_comment_message]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[review_comment_message]"
+                      length="4000"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_comment_message]"
+                      name="review_comment_message"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_creation_date]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[review_creation_date]"
+                      length="50"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_creation_date]"
+                      name="review_creation_date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_answer_timestamp]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[review_answer_timestamp]"
+                      length="50"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].Columns[review_answer_timestamp]"
+                      name="review_answer_timestamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[review_id]"
+                      codePage="65001"
+                      dataType="str"
+                      length="100"
+                      name="review_id" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[order_id]"
+                      codePage="65001"
+                      dataType="str"
+                      length="100"
+                      name="order_id" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[review_score]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="review_score" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[review_comment_title]"
+                      codePage="65001"
+                      dataType="str"
+                      length="1000"
+                      name="review_comment_title" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[review_comment_message]"
+                      codePage="65001"
+                      dataType="str"
+                      length="4000"
+                      name="review_comment_message" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[review_creation_date]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="review_creation_date" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[review_answer_timestamp]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="review_answer_timestamp" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="65001"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Order Reviews\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    order_id,
+    CONVERT(DATETIME, order_purchase_timestamp, 120) AS dt_purchase
+FROM dbo.stg_orders;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+    order_id,
+    CONVERT(DATETIME, order_purchase_timestamp, 120) AS dt_purchase
+FROM dbo.stg_orders;) [refTable]
+where [refTable].[order_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="order_id" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="dt_purchase" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Order Reviews\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-TR61RHJU.Olist_Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-TR61RHJU.Olist_Staging]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Order Reviews\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\Lookup.Inputs[Lookup Input].Columns[u_order_id]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="u_order_id"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">order_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Order Reviews\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Extract Order Reviews\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Lookup.Outputs[Lookup Match Output].Columns[dt_purchase]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Extract Order Reviews\Lookup.Outputs[Lookup Match Output].Columns[dt_purchase]"
+                      name="dt_purchase"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">dt_purchase</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Order Reviews\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Extract Order Reviews\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Order Reviews\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Extract Order Reviews\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Order Reviews\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Order Reviews\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Order Reviews\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stg_order_reviews]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Order Reviews\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-TR61RHJU.Olist_Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-TR61RHJU.Olist_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[_source_file]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="_source_file"
+                      externalMetadataColumnId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_source_file]"
+                      lineageId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Output].Columns[_source_file]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[_loaded_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="_loaded_at"
+                      externalMetadataColumnId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_loaded_at]"
+                      lineageId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Output].Columns[_loaded_at]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[_batch_id]"
+                      cachedDataType="i4"
+                      cachedName="_batch_id"
+                      externalMetadataColumnId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_batch_id]"
+                      lineageId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Output].Columns[_batch_id]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_review_id]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="u_review_id"
+                      externalMetadataColumnId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_id]"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_id]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_order_id]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="u_order_id"
+                      externalMetadataColumnId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_order_id]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_review_score]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="u_review_score"
+                      externalMetadataColumnId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_score]"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_score]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_review_comment_title]"
+                      cachedDataType="wstr"
+                      cachedLength="1000"
+                      cachedName="u_review_comment_title"
+                      externalMetadataColumnId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_comment_title]"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_comment_title]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_review_comment_message]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="u_review_comment_message"
+                      externalMetadataColumnId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_comment_message]"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_comment_message]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_review_creation_date]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="u_review_creation_date"
+                      externalMetadataColumnId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_creation_date]"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_creation_date]" />
+                    <inputColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[u_review_answer_timestamp]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="u_review_answer_timestamp"
+                      externalMetadataColumnId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_answer_timestamp]"
+                      lineageId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output].Columns[u_review_answer_timestamp]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_id]"
+                      dataType="wstr"
+                      length="100"
+                      name="review_id" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                      dataType="wstr"
+                      length="100"
+                      name="order_id" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_score]"
+                      dataType="wstr"
+                      length="50"
+                      name="review_score" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_comment_title]"
+                      dataType="nText"
+                      name="review_comment_title" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_comment_message]"
+                      dataType="nText"
+                      name="review_comment_message" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_creation_date]"
+                      dataType="wstr"
+                      length="50"
+                      name="review_creation_date" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_answer_timestamp]"
+                      dataType="wstr"
+                      length="50"
+                      name="review_answer_timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_source_file]"
+                      dataType="wstr"
+                      length="255"
+                      name="_source_file" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_loaded_at]"
+                      dataType="dbTimeStamp2"
+                      name="_loaded_at"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_batch_id]"
+                      dataType="i4"
+                      name="_batch_id" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Order Reviews\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Order Reviews\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Order Reviews\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Order Reviews\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract Order Reviews.Paths[Data Conversion Output]"
+              endId="Package\Extract Order Reviews\Lookup.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\Extract Order Reviews\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Extract Order Reviews.Paths[Derived Column Output]"
+              endId="Package\Extract Order Reviews\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Extract Order Reviews\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Extract Order Reviews.Paths[Flat File Source Output]"
+              endId="Package\Extract Order Reviews\Data Conversion.Inputs[Data Conversion Input]"
+              name="Flat File Source Output"
+              startId="Package\Extract Order Reviews\Flat File Source.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\Extract Order Reviews.Paths[Lookup Match Output]"
+              endId="Package\Extract Order Reviews\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\Extract Order Reviews\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract Order Reviews.Paths[Reviews_in_range]"
+              endId="Package\Extract Order Reviews\Derived Column.Inputs[Derived Column Input]"
+              name="Reviews_in_range"
+              startId="Package\Extract Order Reviews\Conditional Split.Outputs[Reviews_in_range]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get LSET"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{37A4AC65-CD34-4D36-B68B-36900418D6BF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get LSET"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{82FECD68-314C-429E-91E2-97671269C588}"
+          SQLTask:SqlStatementSource="SELECT LSET, CET&#xA;FROM dbo.data_flow&#xA;WHERE name = 'order_reviews';"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::dtLSET" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::dtCET" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set CET"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{12CD7851-2BDF-447C-818F-D70D5997528F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set CET"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{82FECD68-314C-429E-91E2-97671269C588}"
+          SQLTask:SqlStatementSource="UPDATE dbo.data_flow&#xA;SET CET = DATEADD(MONTH, 1, LSET)&#xA;WHERE name = 'order_reviews';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set LSET"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{91F2A08F-C00F-4EC4-A3C8-48F735C878D4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set LSET"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{82FECD68-314C-429E-91E2-97671269C588}"
+          SQLTask:SqlStatementSource="UPDATE dbo.data_flow&#xA;SET LSET = CET&#xA;WHERE name = 'order_reviews';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{641C8726-8F20-4BC7-AD31-6EE4B6A9CF0E}"
+      DTS:From="Package\Set CET"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get LSET" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{72E9206C-71D2-4142-B1FA-01CAB5E63669}"
+      DTS:From="Package\Get LSET"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Create Batch" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{A97388F6-879C-4E37-8547-ED6E44DA5C53}"
+      DTS:From="Package\Create Batch"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Extract Order Reviews" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{BE81EC81-6C2C-460D-A3B2-A66783E68308}"
+      DTS:From="Package\Extract Order Reviews"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Set LSET" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="117.6,41.6"
+          Id="Package\Set CET"
+          TopLeft="85.8333286436069,57.1999996022383" />
+        <NodeLayout
+          Size="124,41.6"
+          Id="Package\Get LSET"
+          TopLeft="79.1666623411909,134.333332399196" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="141.299995492399,98.7999996022384">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.5333327969577"
+              Start="0,0"
+              End="0,28.0333327969577">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.0333327969577" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="139.2,41.6"
+          Id="Package\Create Batch"
+          TopLeft="69.1666628875668,204.533331911034" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="139.966662614379,175.933332399196">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.599999511838"
+              Start="0,0"
+              End="0,21.099999511838">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.099999511838" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\Extract Order Reviews"
+          TopLeft="72.4999960387749,272.999998101592" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="138.766662887567,246.133331911034">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="24.9333331512081,26.866666190558"
+              Start="0,0"
+              End="24.9333331512081,19.366666190558">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.433333095279" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.433333095279"
+                    Point2="0,13.433333095279"
+                    Point3="4,13.433333095279" />
+                  <mssgle:LineSegment
+                    End="20.9333331512081,13.433333095279" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.9333331512081,13.433333095279"
+                    Point2="24.9333331512081,13.433333095279"
+                    Point3="24.9333331512081,17.433333095279" />
+                  <mssgle:LineSegment
+                    End="24.9333331512081,19.366666190558" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Set LSET"
+          TopLeft="82.4999954923989,350.13333089855" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="164.299995765587,314.599998101592">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.5333327969577"
+              Start="0,0"
+              End="0,28.0333327969577">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.0333327969577" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract Order Reviews">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Extract Order Reviews\Flat File Source"
+          TopLeft="108.333327414261,0.866666660639968" />
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\Extract Order Reviews\Data Conversion"
+          TopLeft="97.499994672835,85.7999994033575" />
+        <EdgeLayout
+          Id="Package\Extract Order Reviews.Paths[Flat File Source Output]"
+          TopLeft="183.933327414261,42.46666666064">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.43333274142617,43.3333327427176"
+              Start="0,0"
+              End="-8.43333274142617,35.8333327427176">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.6666663713588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.6666663713588"
+                    Point2="0,21.6666663713588"
+                    Point3="-4,21.6666663713588" />
+                  <mssgle:LineSegment
+                    End="-4.43333274142617,21.6666663713588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.43333274142617,21.6666663713588"
+                    Point2="-8.43333274142617,21.6666663713588"
+                    Point3="-8.43333274142617,25.6666663713588" />
+                  <mssgle:LineSegment
+                    End="-8.43333274142617,35.8333327427176" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\Extract Order Reviews\Lookup"
+          TopLeft="114.999993716677,161.199998879035" />
+        <EdgeLayout
+          Id="Package\Extract Order Reviews.Paths[Data Conversion Output]"
+          TopLeft="173.449994194756,127.399999403358">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.7999994756778"
+              Start="0,0"
+              End="0,26.2999994756778">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.2999994756778" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Extract Order Reviews\Conditional Split"
+          TopLeft="104.999994263053,251.333331585593" />
+        <EdgeLayout
+          Id="Package\Extract Order Reviews.Paths[Lookup Match Output]"
+          TopLeft="171.399993716677,202.799998879035">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.4000005463759,48.5333327065573"
+              Start="0,0"
+              End="10.4000005463759,41.0333327065573">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2666663532787" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2666663532787"
+                    Point2="0,24.2666663532787"
+                    Point3="4,24.2666663532787" />
+                  <mssgle:LineSegment
+                    End="6.40000054637588,24.2666663532787" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.40000054637588,24.2666663532787"
+                    Point2="10.4000005463759,24.2666663532787"
+                    Point3="10.4000005463759,28.2666663532787" />
+                  <mssgle:LineSegment
+                    End="10.4000005463759,41.0333327065573" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-42.9913864455621,29.2666663532787,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Extract Order Reviews\Derived Column"
+          TopLeft="123.333326594697,343.66666431023" />
+        <EdgeLayout
+          Id="Package\Extract Order Reviews.Paths[Reviews_in_range]"
+          TopLeft="181.799994263053,292.933331585593">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17.9333323316443,50.7333327246374"
+              Start="0,0"
+              End="17.9333323316443,43.2333327246374">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.3666663623187" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.3666663623187"
+                    Point2="0,25.3666663623187"
+                    Point3="4,25.3666663623187" />
+                  <mssgle:LineSegment
+                    End="13.9333323316443,25.3666663623187" />
+                  <mssgle:CubicBezierSegment
+                    Point1="13.9333323316443,25.3666663623187"
+                    Point2="17.9333323316443,25.3666663623187"
+                    Point3="17.9333323316443,29.3666663623187" />
+                  <mssgle:LineSegment
+                    End="17.9333323316443,43.2333327246374" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-31.4796814904278,30.3666663623187,80.8926953125,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Extract Order Reviews\OLE DB Destination"
+          TopLeft="124.166659882499,423.93333080815" />
+        <EdgeLayout
+          Id="Package\Extract Order Reviews.Paths[Derived Column Output]"
+          TopLeft="199.733326594698,385.26666431023">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.0333332878019,38.6666664979195"
+              Start="0,0"
+              End="10.0333332878019,31.1666664979195">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.3333332489597" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.3333332489597"
+                    Point2="0,19.3333332489597"
+                    Point3="4,19.3333332489597" />
+                  <mssgle:LineSegment
+                    End="6.03333328780192,19.3333332489597" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.03333328780192,19.3333332489597"
+                    Point2="10.0333332878019,19.3333332489597"
+                    Point3="10.0333332878019,23.3333332489597" />
+                  <mssgle:LineSegment
+                    End="10.0333332878019,31.1666664979195" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Order Reviews\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Order Reviews\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
